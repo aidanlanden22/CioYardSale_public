@@ -3,7 +3,7 @@ models:
     external_links:
       -  mysql:db
     volumes:
-      - ./app/CioYardSale:/app
+      - ./:/app
     ports:
       - "8001:8000"
-    command: bash -c "mod_wsgi-express start-server --working-directory ./app/CioYardSale --reload-on-changes ./app/CioYardSale/CioYardSale/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-changes --working-directory ./ ./CioYardSale/wsgi.py"
