@@ -96,26 +96,39 @@ def update(request, pk):
         data = json.dumps(status)
     elif request.method == 'POST':
         try:
-            user = User.objects.filter(id=pk)
-            if request.POST.get('username'):
-                user.username = request.POST.get('username')
-                status = {'status': 'sucessful request', 'action': 'updated user'}
-            if request.POST.get('first_name'):
-                user.first_name = request.POST.get('first_name')
-                status = {'status': 'sucessful request', 'action': 'updated user'}
-            if request.POST.get('last_name'):
-                user.last_name = request.POST.get('last_name')
-                status = {'status': 'sucessful request', 'action': 'updated user'}
-            if request.POST.get('email'):
-                user.first_name = request.POST.get('email')
-                status = {'status': 'sucessful request', 'action': 'updated user'}
-            if request.POST.get('password'):
-                user.password = hashers.make_password(request.POST.get('password'))
-                status = {'status': 'sucessful request', 'action': 'updated user'}
-            status = {'status': 'unsucessful request', 'error': 'nothing was updated'}
-            data = json.dumps(status)
+            user = User.objects.get(id=pk)
         except Exception as e:
             return JsonResponse({'status': str(e)})
+        status = {'status': 'unsucessful request', 'action': 'nothing updated'}
+        if request.POST.get('username'):
+            user.username = request.POST.get('username')
+            user.save()
+            status = {'status': 'sucessful request', 'action': 'updated username'}
+        if request.POST.get('first_name'):
+            user.first_name = request.POST.get('first_name')
+            user.save()
+            status = {'status': 'sucessful request', 'action': 'updated firstname'}
+        if request.POST.get('last_name'):
+            user.last_name = request.POST.get('last_name')
+            user.save()
+            status = {'status': 'sucessful request', 'action': 'updated lastname'}
+        if request.POST.get('email'):
+            user.email = request.POST.get('email')
+            user.save()
+            status = {'status': 'sucessful request', 'action': 'updated email'}
+        if request.POST.get('year'):
+            user.year = request.POST.get('year')
+            user.save()
+            status = {'status': 'sucessful request', 'action': 'updated year'}
+        if request.POST.get('password'):
+            user.password = hashers.make_password(request.POST.get('password'))
+            user.save()
+            status = {'status': 'sucessful request', 'action': 'updated password'}
+        response = {'first name': user.first_name,'last name': user.last_name,
+                'username': user.username, 'email': user.email}
+        full_response = {'status': status, 'response': response}
+        data = json.dumps(full_response)
+
     return HttpResponse(data, content_type='application/json')
 
 def delete(request, pk):
