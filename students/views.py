@@ -7,9 +7,13 @@ from django.core.urlresolvers import reverse
 from .forms import SignUpUser, SignUpStudent
 from .models import Student
 
+# API
+from django.core import serializers
+import json
 
 def profile(request):
-    return render(request, 'students/profile.html')
+    myKey = request.user.id
+    return render(request, 'students/profile.html', {'myKey': myKey })
 
 def signup(request):
     if request.user.is_authenticated and Student.objects.filter(user=request.user).exists():
@@ -46,3 +50,18 @@ def logoutUser(request):
     if request.user.is_authenticated():
         logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
+# ********** THIS IS THE API FOR STUDENTS **********
+def read(request, pk):
+    # Format the JSON Response for a GET Request
+    if request.method == 'GET':
+        # Imported from django
+        # Gives you model, pk, fields - user, year
+        data = serializers.serialize("json", Student.objects.filter(id=pk))
+
+    # Format the JSON Response for a POST Request
+    elif request.method == 'POST':
+        # TO DO
+        response = JsonResponse({'foo': 'buzz'})
+    return HttpResponse(data, content_type='application/json')
