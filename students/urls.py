@@ -8,4 +8,5 @@ app_name = 'students'
 urlpatterns = [
     url(r'^$', views.profile, name='profile'),
     url(r'^signup/$', views.signup, name='signup'),
+    url(r'^logout/$', views.logoutUser, name='logout'),
 ]

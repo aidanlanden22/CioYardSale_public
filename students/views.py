@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 
 from .forms import SignUpUser, SignUpStudent
@@ -41,3 +41,8 @@ def signup(request):
     userForm = SignUpUser()
     studentForm = SignUpStudent()
     return render(request, 'students/signup.html', {'userForm': userForm, 'studentForm': studentForm})
+
+def logoutUser(request):
+    if request.user.is_authenticated():
+        logout(request)
+    return render(request, 'index.html')
