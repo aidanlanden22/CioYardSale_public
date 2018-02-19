@@ -1,5 +1,5 @@
 from django.db import models
-from djmoney.models.fields import MoneyField
+#from djmoney.models.fields import MoneyField
 
 class Commodity(models.Model):
     #link commodity to the cio selling it
@@ -33,12 +33,14 @@ class Commodity(models.Model):
         verbose_name='Quatity of items to be sold or services to be offered'
     )
     
-    price = MoneyField(
-        decimal_places=2,
-        default=0,
-        default_currency='USD',
-        max_digits=11,
-    )
+   # price = MoneyField(
+#        decimal_places=2,
+#        default=0,
+#        default_currency='USD',
+#        max_digits=11,
+#)
+    
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     
     date_posted = models.DateTimeField(
         auto_now_add=True, 

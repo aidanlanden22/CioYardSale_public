@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^students/', include('students.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^sell/', include('commodity.urls')),
 ]
