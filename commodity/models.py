@@ -5,6 +5,8 @@ class Commodity(models.Model):
     #link commodity to the cio selling it
     #CIO = models.ForeignKey('CIO', null=True, blank=True, on_delete=models.SET_NULL)
     
+    id = models.AutoField(primary_key=True)
+    
     GOOD_OR_SERVICE = (
     ('G', 'Good'),
     ('S', 'Service'),

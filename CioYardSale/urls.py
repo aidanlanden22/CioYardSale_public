@@ -26,5 +26,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^sell/', include('commodity.urls')),
     url(r'^api/v1/students/', include('students.urls')),
+<<<<<<< HEAD
+    url(r'^api/v1/commodity/', include('commodity.urls')),
+    #url(r'^api/v1/cio/', include('cio.urls')),
+=======
     url(r'^api/v1/cio/', include('cio.urls')),
+>>>>>>> 7f6ac870b10400587b6865edd4314d9e7f72da75
 ]
