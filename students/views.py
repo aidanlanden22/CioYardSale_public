@@ -56,12 +56,12 @@ def logoutUser(request):
 def read(request, pk):
     # Format the JSON Response for a GET Request
     if request.method == 'GET':
-        # Imported from django
-        # Gives you model, pk, fields - user, year
-        data = serializers.serialize("json", Student.objects.filter(id=pk))
+        # Imported from django - gets the fields for objects
+        user_data = serializers.serialize("json", User.objects.filter(id=pk),
+                                            fields=('username', 'first_name', 'last_name', 'email', 'date_joined'))
 
     # Format the JSON Response for a POST Request
     elif request.method == 'POST':
         # TO DO
         response = JsonResponse({'foo': 'buzz'})
-    return HttpResponse(data, content_type='application/json')
+    return HttpResponse(user_data, content_type='application/json')
