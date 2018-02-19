@@ -45,4 +45,4 @@ def signup(request):
 def logoutUser(request):
     if request.user.is_authenticated():
         logout(request)
-    return render(request, 'index.html')
+    return HttpResponseRedirect(reverse('index'))
