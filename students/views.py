@@ -95,8 +95,27 @@ def update(request, pk):
         status = {'status': 'unsucessful request'}
         data = json.dumps(status)
     elif request.method == 'POST':
-        # TO DO
-        data = {}
+        try:
+            user = User.objects.filter(id=pk)
+            if request.POST.get('username'):
+                user.username = request.POST.get('username')
+                status = {'status': 'sucessful request', 'action': 'updated user'}
+            if request.POST.get('first_name'):
+                user.first_name = request.POST.get('first_name')
+                status = {'status': 'sucessful request', 'action': 'updated user'}
+            if request.POST.get('last_name'):
+                user.last_name = request.POST.get('last_name')
+                status = {'status': 'sucessful request', 'action': 'updated user'}
+            if request.POST.get('email'):
+                user.first_name = request.POST.get('email')
+                status = {'status': 'sucessful request', 'action': 'updated user'}
+            if request.POST.get('password'):
+                user.password = hashers.make_password(request.POST.get('password'))
+                status = {'status': 'sucessful request', 'action': 'updated user'}
+            status = {'status': 'unsucessful request', 'error': 'nothing was updated'}
+            data = json.dumps(status)
+        except Exception as e:
+            return JsonResponse({'status': str(e)})
     return HttpResponse(data, content_type='application/json')
 
 def delete(request, pk):
