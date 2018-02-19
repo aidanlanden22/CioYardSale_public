@@ -22,8 +22,9 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.loginUser, name='login'),
     url(r'^students/', include('students.urls')),
+    url(r'^cio/', include('cio.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^sell/', include('commodity.urls')),
     url(r'^api/v1/students/', include('students.urls')),
-    url(r'^api/v1/students/', include('cio.urls')),
+    url(r'^api/v1/cio/', include('cio.urls')),
 ]

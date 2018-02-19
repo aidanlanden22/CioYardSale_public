@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Student
+from .models import Cio
 
 # Form for the built in User fields
 class SignUpCio(forms.ModelForm):
