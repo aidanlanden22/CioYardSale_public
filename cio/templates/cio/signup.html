@@ -13,11 +13,11 @@
   {% endif %}
   <div class="row">
     <div class="col-md-6 offset-3">
-      <form method="POST" action="{% url 'students:signup' %}">
+      <form method="POST" action="{% url 'cio:signup' %}">
             {% csrf_token %}
             <div class="row my-2">
                 <div class="col-md-12 form-group">
-                    <label for="id_username">{{ Form.username.label }}</label>
+                    <label for="id_username">{{ cioForm.username.label }}</label>
                     {{ cioForm.username }}
                 </div>
             <div class="row my-2">

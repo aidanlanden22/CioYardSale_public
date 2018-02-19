@@ -10,7 +10,7 @@ class SignUpCio(forms.ModelForm):
 
     # Use to format and style the form
     def __init__(self, *args, **kwargs):
-        super(SignUpUser, self).__init__(*args, **kwargs)
+        super(SignUpCio, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs = {
             'class': 'form-control'
         }
