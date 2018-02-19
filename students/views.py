@@ -8,6 +8,8 @@ from .forms import SignUpUser, SignUpStudent
 from .models import Student
 
 # API
+from django.contrib.auth import hashers
+from django.http import JsonResponse
 from django.core import serializers
 import json
 
@@ -54,14 +56,57 @@ def logoutUser(request):
 
 # ********** THIS IS THE API FOR STUDENTS **********
 def read(request, pk):
-    # Format the JSON Response for a GET Request
+    data = {}
     if request.method == 'GET':
-        # Imported from django - gets the fields for objects
-        user_data = serializers.serialize("json", User.objects.filter(id=pk),
-                                            fields=('username', 'first_name', 'last_name', 'email', 'date_joined'))
+        data = serializers.serialize("json", User.objects.filter(id=pk), fields=('username', 'first_name', 'last_name', 'email', 'date_joined'))
+    elif request.method == 'POST':
+        status = {'status': 'unsucessful request'}
+        data = json.dumps(status)
+    return HttpResponse(data, content_type='application/json')
 
-    # Format the JSON Response for a POST Request
+def create(request):
+    data = {}
+    if request.method == 'GET':
+        status = {'status': 'unsucessful request'}
+        data = json.dumps(status)
+    elif request.method == 'POST':
+        # TO DO: check if the username already exists
+        try:
+            user = User.objects.create_user(
+                username = request.POST.get('username'),
+                first_name = request.POST.get('first_name'),
+                last_name = request.POST.get('last_name'),
+                email = request.POST.get('email'),
+                password = hashers.make_password(request.POST.get('password'))
+            )
+            user.save()
+
+            student = Student.objects.create(
+                year = request.POST.get('year'),
+            )
+            student.save()
+        except Exception as e:
+            return JsonResponse({'status': str(e)})
+    return HttpResponse(data, content_type='application/json')
+
+def update(request, pk):
+    data = {}
+    if request.method == 'GET':
+        status = {'status': 'unsucessful request'}
+        data = json.dumps(status)
     elif request.method == 'POST':
         # TO DO
-        response = JsonResponse({'foo': 'buzz'})
-    return HttpResponse(user_data, content_type='application/json')
+        data = {}
+    return HttpResponse(data, content_type='application/json')
+
+def delete(request, pk):
+    data = {}
+    if request.method == 'GET':
+        status = {'status': 'unsucessful request'}
+        data = json.dumps(status)
+    elif request.method == 'POST':
+        user = User.objects.filter(id=pk)
+        user.delete()
+        status = {'status': 'sucessful request', 'action': 'deleted user'}
+        data = json.dumps(status)
+    return HttpResponse(data, content_type='application/json')
