@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'^students/', include('students.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^sell/', include('commodity.urls')),
+    url(r'^api/v1/students/', include('students.urls')),
+    url(r'^api/v1/students/', include('cio.urls')),
 ]
