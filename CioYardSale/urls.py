@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^cio/', include('cio.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api/v1/students/', include('students.urls')),
-    url(r'^api/v1/students/', include('cio.urls')),
+    url(r'^api/v1/cio/', include('cio.urls')),
 ]
