@@ -8,7 +8,10 @@ from django.core.urlresolvers import reverse
 from .forms import SignUpCio
 from .models import Cio
 
+# api
 from django.core import serializers
+from django.contrib.auth import hashers
+from django.http import JsonResponse
 import json
 
 def profile(request):
@@ -57,8 +60,10 @@ def read(request, pk):
         response = JsonResponse({'foo': 'buzz'})
     return HttpResponse(data, content_type='application/json')
 
+# create API call
 def create(request):
     data = {}
+    # Only allow POST requests
     if request.method == 'GET':
         status = {'status': 'unsucessful request'}
         data = json.dumps(status)
@@ -71,13 +76,15 @@ def create(request):
                 password = hashers.make_password(request.POST.get('password'))
             )
             myUser.save()
-            
+
         except Exception as e:
             return JsonResponse({'status': str(e)})
     return HttpResponse(data, content_type='application/json')
 
+# Update API call    
 def update(request, pk):
     data = {}
+    # Only allow POST requests
     if request.method == 'GET':
         status = {'status': 'unsucessful request'}
         data = json.dumps(status)
@@ -99,14 +106,13 @@ def update(request, pk):
             user.password = hashers.make_password(request.POST.get('password'))
             user.save()
             status = {'status': 'sucessful request', 'action': 'updated password'}
-        response = {'first name': user.first_name,'last name': user.last_name,
-                'username': user.username, 'email': user.email}
+        response = {'username': user.username, 'email': user.email}
         full_response = {'status': status, 'response': response}
         data = json.dumps(full_response)
 
     return HttpResponse(data, content_type='application/json')
 
-
+# delete API call
 def delete(request, pk):
     data = {}
     if request.method == 'GET':
