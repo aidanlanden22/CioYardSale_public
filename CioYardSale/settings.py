@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'students',
     'commodity',
+
+    'cio',
+
 ]
 
 MIDDLEWARE = [
@@ -80,7 +83,7 @@ DATABASES = {
           'NAME': 'cs4501',
           'USER': 'www',
           'PASSWORD': '$3cureUS',
-          'HOST': '127.0.0.1',
+          'HOST': 'db',
           }
 }
 
