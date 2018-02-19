@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 
-from .forms import SignUpUser, SignUpStudent
-from .models import Student
+from .forms import SignUpCio
+from .models import Cio
 
 from django.core import serializers
 import json
@@ -25,18 +25,17 @@ def signup(request):
         formErrors.update(cioForm.errors)
         if cioForm.is_valid():
             cio = User.objects.create_user(
-                username=userForm.cleaned_data['username'],
-                password=userForm.cleaned_data['password'],
-                email=userForm.cleaned_data['email']
+                username=cioForm.cleaned_data['username'],
+                password=cioForm.cleaned_data['password'],
+                email=cioForm.cleaned_data['email']
             )
             cio.save()
-            login(request, user)
+            login(request, cio)
             return HttpResponseRedirect(reverse('cio:profile'))
 
         return render(request, 'cio/signup.html', {'errors': formErrors,  'cioForm': cioForm})
 
-    userForm = SignUpUser()
-    studentForm = SignUpStudent()
+    cioForm = SignUpCio()
     return render(request, 'cio/signup.html', {'cioForm': cioForm})
 
 def logoutUser(request):
