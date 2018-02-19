@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+This is {{ request.user.username }}'s profile. <br>
+
+The primary key for {{ request.user.username }} is {{ myKey }}.
+
+{% endblock content %}

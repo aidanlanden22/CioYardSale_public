@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-4">
+  <h4 class="text-center"> Create an Account </h4>
+  {% if errors %}
+      {% for key, value in errors.items %}
+          <div class="alert alert-danger mb-3">
+              <p>{{ key }}</p>
+              <p>{{ value }}</p>
+          </div>
+      {% endfor %}
+  {% endif %}
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <form method="POST" action="{% url 'cio:signup' %}">
+            {% csrf_token %}
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_username">{{ cioForm.username.label }}</label>
+                    {{ cioForm.username }}
+                </div>
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_email">{{ cioForm.email.label }}</label>
+                    {{ cioForm.email }}
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_password">{{ cioForm.password.label }}</label>
+                    {{ cioForm.password }}
+                </div>
+            </div>
+            </div>
+            <hr>
+          <button type="submit" class="btn btn-primary mb-4">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
