@@ -72,16 +72,18 @@ def create(request):
     elif request.method == 'POST':
         # TO DO: check if the username already exists
         try:
-            user = User.objects.create_user(
+            myUser = User.objects.create_user(
                 username = request.POST.get('username'),
                 first_name = request.POST.get('first_name'),
                 last_name = request.POST.get('last_name'),
                 email = request.POST.get('email'),
                 password = hashers.make_password(request.POST.get('password'))
             )
-            user.save()
+            myUser.save()
 
             student = Student.objects.create(
+                user = myUser,
+                user_id = myUser.id,
                 year = request.POST.get('year'),
             )
             student.save()
