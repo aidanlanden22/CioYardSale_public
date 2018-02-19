@@ -12,4 +12,5 @@ urlpatterns = [
 
     # API URLS
     url(r'^(?P<pk>[0-9]+)/$', views.read, name='read'),
+
 ]

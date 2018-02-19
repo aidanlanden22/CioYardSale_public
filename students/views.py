@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 from .forms import SignUpUser, SignUpStudent
 from .models import Student
 
-# API
 from django.core import serializers
 import json
 
