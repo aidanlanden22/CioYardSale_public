@@ -28,7 +28,7 @@ class CommodityForm(forms.ModelForm):
 
     class Meta:
         model = Commodity
-        exclude = ['date_created','picture']
+        exclude = ['date_created','picture','id']
 
 class CommodityPicForm(forms.Form):
     picture = forms.ImageField()
@@ -41,4 +41,4 @@ class CommodityPicForm(forms.Form):
 
     class Meta:
         model = Commodity
-        exclude = ['date_created','g_or_s','title','description','quantity','price','date_expires']
+        exclude = ['date_created','g_or_s','title','description','quantity','price','date_expires','id']
