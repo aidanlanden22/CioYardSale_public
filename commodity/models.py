@@ -10,7 +10,7 @@ class Commodity(models.Model):
     ('S', 'Service'),
     )
     
-    g_or_s = models.CharField(max_length=1, choices=GOOD_OR_SERVICE)
+    g_or_s = models.CharField(max_length=1, choices=GOOD_OR_SERVICE, default='G')
     
     title = models.CharField(
         max_length=250,

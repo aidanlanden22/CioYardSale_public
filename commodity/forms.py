@@ -1,13 +1,15 @@
 from django import forms
 from .models import Commodity
 
-class CommodityForm(forms.Form):
+class CommodityForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(CommodityForm, self).__init__(*args, **kwargs)
+        
         self.fields['g_or_s'].widget.attrs = {
             'class': 'form-control'
         }
+
         self.fields['title'].widget.attrs = {
             'class': 'form-control'
         }
