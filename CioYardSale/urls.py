@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^login/$', views.loginUser, name='login'),
     url(r'^students/', include('students.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^api/v1/students/', include('students.urls')),
 ]
