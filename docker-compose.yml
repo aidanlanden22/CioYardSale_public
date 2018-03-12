@@ -16,7 +16,7 @@ exp:
       - ./exp:/app
    ports:
       - "8002:8000"
-   command: "mod_wsgi-express start-server --reload-on-changes ./CioYardSale/wsgi.py"
+   command: "mod_wsgi-express start-server --reload-on-changes ./exp/wsgi.py"
 
 web:
    image: tp33/django
@@ -26,4 +26,4 @@ web:
       - ./web:/app
    ports:
       - "8000:8000"
-   command: "mod_wsgi-express start-server --reload-on-changes ./CioYardSale/wsgi.py"
+   command: "mod_wsgi-express start-server --reload-on-changes ./web/wsgi.py"
