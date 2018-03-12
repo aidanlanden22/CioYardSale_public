@@ -15,4 +15,4 @@ docker-compose up
 
 ## During Demo
 
-Ask about relative paths in docker-compose.yml
+Ask about how to run the tests in the web container
