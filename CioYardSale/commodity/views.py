@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from frontend.forms import CommodityForm, CommodityPicForm
-from .models import Commodity
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import Commodity
 
 from django.core import serializers
 import json
