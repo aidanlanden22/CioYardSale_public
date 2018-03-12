@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import CommodityForm, CommodityPicForm
+from frontend.forms import CommodityForm, CommodityPicForm
 from .models import Commodity
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse

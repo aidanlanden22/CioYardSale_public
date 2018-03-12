@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from . import views
 
@@ -8,5 +8,5 @@ app_name = 'frontend'
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
 	url(r'^sell/$', views.sellItem, name='sellItem'),
-	# url(r'^$', views.CioProfile, name='profile'),
+	url(r'^api/v1/commodity/', include('api.commodity.urls')),
 ]

@@ -3,9 +3,19 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import CommodityForm
+from . import forms
+
+import urllib.request
+import urllib.parse
+import json
 
 def index(request):
+    print ("About to perform the GET request...")
+
+    req = urllib.request.Request('http://127.0.0.1:8001/api/v1/commodity/1')
+
+    print (req)
+
     return render(request, 'index.html')
 
 def sellItem(request):
