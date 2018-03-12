@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'frontend.urls'
+ROOT_URLCONF = 'CioYardSale.urls'
 
 TEMPLATES = [
     {
