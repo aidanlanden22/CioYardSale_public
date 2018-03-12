@@ -1,5 +1,5 @@
 from django.db import models
-from api.cio.models import Cio
+from cio.models import Cio
 
 class Commodity(models.Model):
     #link commodity to the cio selling it
