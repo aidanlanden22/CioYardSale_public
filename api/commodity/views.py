@@ -9,31 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import json
 
-# Create your views here.
-def sell(request):
-    if request.method == 'POST':
-
-        form = CommodityForm(request.POST)
-
-        if form.is_valid():
-            selling = Commodity.objects.create(
-                g_or_s=form.cleaned_data['g_or_s'],
-                quantity=form.cleaned_data['quantity'],
-                description=form.cleaned_data['description'],
-                price=form.cleaned_data['price'],
-                date_expires=form.cleaned_data['date_expires'],
-                title=form.cleaned_data['title']
-            )
-            selling.save()
-
-            return HttpResponseRedirect('/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = CommodityForm()
-
-    return render(request, 'createcommodity.html', {'form': form})
-
 # ********** THIS IS THE API FOR COMMODITIES **********
 @csrf_exempt
 def read(request, pk):
@@ -44,7 +19,7 @@ def read(request, pk):
 
         data = serializers.serialize("json", Commodity.objects.filter(id=pk))
         return HttpResponse(data, content_type='application/json')
-  
+
     if request.method == 'POST':
         status = {'status': 'unsucessful request'}
         data = json.dumps(status)
@@ -56,7 +31,7 @@ def create(request):
 
     if request.method == 'POST':
         form = CommodityForm(request.POST)
-        
+
         if form.is_valid():
 
             selling = Commodity.objects.create(
@@ -73,12 +48,12 @@ def create(request):
 
             data = serializers.serialize("json", [selling])
             return HttpResponse(data, content_type='application/json')
-            
+
     if request.method == 'GET':
         status = {'status': 'unsucessful request'}
         data = json.dumps(status)
         return HttpResponse(data, content_type='application/json')
-        
+
 @csrf_exempt
 def update(request, pk):
     data = {}
@@ -133,5 +108,5 @@ def delete(request, pk):
         commodity.delete()
         status = {'status': 'sucessful request', 'action': 'deleted commodity'}
         data = json.dumps(status)
-    
+
     return HttpResponse(data, content_type='application/json')

@@ -1,6 +1,5 @@
 from django.db import models
-#from djmoney.models.fields import MoneyField
-from cio.models import Cio
+from api.cio.models import Cio
 
 class Commodity(models.Model):
     #link commodity to the cio selling it

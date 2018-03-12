@@ -17,15 +17,16 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 from . import views
+from frontend.views import index
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^login/$', views.loginUser, name='login'),
-    url(r'^students/', include('students.urls')),
-    url(r'^cio/', include('cio.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^sell/', include('commodity.urls')),
-    url(r'^api/v1/students/', include('students.urls')),
-    url(r'^api/v1/commodity/', include('commodity.urls')),
-    url(r'^api/v1/cio/', include('cio.urls')),
+    url(r'^$', index, name='index'),
+    # url(r'^login/$', views.loginUser, name='login'),
+    # url(r'^students/', include('students.urls')),
+    # url(r'^cio/', include('cio.urls')),
+    # url(r'^admin/', admin.site.urls),
+    # url(r'^sell/', include('commodity.urls')),
+    # url(r'^api/v1/students/', include('students.urls')),
+    # url(r'^api/v1/commodity/', include('commodity.urls')),
+    # url(r'^api/v1/cio/', include('cio.urls')),
 ]
