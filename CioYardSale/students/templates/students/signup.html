@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-4">
+  <h4 class="text-center"> Create an Account </h4>
+  {% if errors %}
+      {% for key, value in errors.items %}
+          <div class="alert alert-danger mb-3">
+              <p>{{ key }}</p>
+              <p>{{ value }}</p>
+          </div>
+      {% endfor %}
+  {% endif %}
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <form method="POST" action="{% url 'students:signup' %}">
+            {% csrf_token %}
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_username">{{ userForm.username.label }}</label>
+                    {{ userForm.username }}
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_first_name">{{ userForm.first_name.label }}</label>
+                    {{ userForm.first_name }}
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_last_name">{{ userForm.last_name.label }}</label>
+                    {{ userForm.last_name }}
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_email">{{ userForm.email.label }}</label>
+                    {{ userForm.email }}
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_password">{{ userForm.password.label }}</label>
+                    {{ userForm.password }}
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-12 form-group">
+                    <label for="id_year">{{ studentForm.year.label }}</label>
+                    {{ studentForm.year }}
+                </div>
+            </div>
+            <hr>
+          <button type="submit" class="btn btn-primary mb-4">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
