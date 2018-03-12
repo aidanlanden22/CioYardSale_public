@@ -3,7 +3,27 @@ models:
     external_links:
       -  mysql:db
     volumes:
-      - ./:/app
+      - ./CioYardSale:/app
     ports:
       - "8001:8000"
     command: bash -c "pip install Pillow && python manage.py loaddata database.json && mod_wsgi-express start-server --reload-on-changes --working-directory ./ ./CioYardSale/wsgi.py"
+
+exp:
+   image: tp33/django
+   links:
+      - models:models-api
+   ports:
+      - "8002:8000"
+   volumes:
+      - ./exp:/app
+   command: "mod_wsgi-express start-server --reload-on-changes ./CioYardSale/wsgi.py"
+
+web:
+   image: tp33/django
+   links:
+      - exp:exp-api
+   ports:
+      - "8000:8000"
+   volumes:
+      - ./web:/app
+   command: "mod_wsgi-express start-server --reload-on-changes ./CioYardSale/wsgi.py"
