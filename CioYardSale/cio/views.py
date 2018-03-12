@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 
-from .forms import SignUpCio
 from .models import Cio
 
 # api
