@@ -36,11 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'students',
-    'commodity',
-
-    'cio',
-
+    'api.students',
+    'api.commodity',
+    'api.cio',
+    # 'frontend'
 ]
 
 MIDDLEWARE = [
@@ -53,12 +52,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'CioYardSale.urls'
+ROOT_URLCONF = 'frontend.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,7 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'frontend/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #be able to add profile pics/pictures of good or service etc
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
