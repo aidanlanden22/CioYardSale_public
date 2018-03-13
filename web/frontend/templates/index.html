@@ -6,15 +6,16 @@
   <div class="col-md-12 mx-auto">
     <div class="text-center mt-5 mb-2">
       <h3>All items for sale</h3>
+	  <br>
     </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-4 mx-auto text-center">
-    <P> The request is: req </p>
     {% for item in items %}
-      item
+		<a href="{% url 'view_item' item.pk %}">Title: {{ item.fields.title }}</a>
+		<p>{{ item.fields.picture }}</p>
     {% endfor %}
   </div>
 </div>
