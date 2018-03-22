@@ -32,9 +32,20 @@ def view_item(request, pk):
     return render(request, 'item.html',context)
 
 def login(request):
+    loginForm = forms.LoginForm()
+    if request.method == 'POST':
+        loginForm = forms.LoginForm(request.POST)
+        if loginForm.is_valid():
+            username = loginForm.cleaned_data['username']
+            password = loginForm.cleaned_data['password']
+            # need to authenticate user
 
-    context = {
-        'items': [],
-    }
+            # if user can be authenticated
+                # return index.html
+            # else
+                # return login.html with errors
 
-    return render(request, 'login.html', context)
+
+        return render(request, 'login.html', {'loginForm':loginForm, 'is_post': 'true'})
+
+    return render(request, 'login.html', {'loginForm':loginForm, 'is_post': 'false'})

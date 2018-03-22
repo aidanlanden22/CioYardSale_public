@@ -17,4 +17,6 @@ docker-compose up
 
 The documentation says we should create a new model for users - what if we created our models based on user-types: students and CIOs.
 
+Would we need to determine if the logging in user is a student or CIO in the EXP layer?
+
 What does "service-based authentication in your experience services" mean?

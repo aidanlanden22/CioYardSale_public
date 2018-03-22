@@ -3,16 +3,24 @@
 {% block content %}
 
 <div class="container">
-  {% if message %}
-    <div class="alert alert-danger" role="alert">
-      {{message}}
-    </div>
-  {% endif %}
   <div class="row">
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6 offset-3">
           <h3 class="text-center my-3">Log In</h3>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <label for="username">{{ loginForm.username.label}}</label>
+                {{ loginForm.username }}
+            </div>
+            <div class="row">
+                <label for="password">{{ loginForm.password.label}}</label>
+                {{ loginForm.password }}
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">Login</button>
+          </form>
         </div>
       </div>
     </div>
