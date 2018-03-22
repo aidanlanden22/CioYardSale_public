@@ -1,29 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Student(models.Model):
-    # Using the built-in Django User model for now
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=30, unique=True, default=None)
+    password = models.CharField(max_length=100,default=None)
 
-    # Let the student select a year option
-    FIRSTYEAR = 'FIRST'
-    SECONDYEAR = 'SECOND'
-    THIRDYEAR = 'THIRD'
-    FOURTHYEAR = 'FOURTH'
-    POSTGRAD = 'POST'
-    NONSTUD = 'NON'
-    YEAR_IN_SCHOOL_CHOICES = (
-        (FIRSTYEAR, 'First Year'),
-        (SECONDYEAR, 'Second Year'),
-        (THIRDYEAR, 'Third Year'),
-        (FOURTHYEAR, 'Fourth Year'),
-        (POSTGRAD, 'Post-Grad'),
-        (NONSTUD, 'Non-Student'),
-    )
-    year = models.CharField(
-        max_length=6,
-        choices=YEAR_IN_SCHOOL_CHOICES,
-        default=FIRSTYEAR,
-    )
-
-    
+class Authenticator(models.Model):
+	user = models.ForeignKey(Student)
+	authenticator = models.CharField(max_length=100, primary_key=True)
+	timestamp = models.DateTimeField(default=timezone.now)

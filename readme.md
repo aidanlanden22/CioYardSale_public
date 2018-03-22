@@ -15,4 +15,6 @@ docker-compose up
 
 ## During Demo
 
-Ask about how to run the tests in the web container
+The documentation says we should create a new model for users - what if we created our models based on user-types: students and CIOs.
+
+What does "service-based authentication in your experience services" mean?

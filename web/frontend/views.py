@@ -24,11 +24,17 @@ def view_item(request, pk):
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
 
-
-
     context = {
         'pk' : pk,
         'item': resp[0],
     }
 
     return render(request, 'item.html',context)
+
+def login(request):
+
+    context = {
+        'items': [],
+    }
+
+    return render(request, 'login.html', context)
