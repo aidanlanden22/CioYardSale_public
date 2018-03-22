@@ -22,6 +22,8 @@ __pycache__/
 /__pycache__/
 /__pycache__
 __pycache__
+CioYardSale/cio/__pycache__/*
+CioYardSale/students/__pycache__/*
 
 # C extensions
 *.so
