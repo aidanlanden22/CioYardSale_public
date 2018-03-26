@@ -10,7 +10,7 @@ class myUser(models.Model):
         return self.username
 
 
-class Authenticater():
+class Authenticater(models.Model):
     myUser = models.ForeignKey(myUser)
     authenticator = models.CharField(max_length=100,primary_key=True)
     date_created = models.DateTimeField(default=timezone.now)
