@@ -9,7 +9,33 @@ import os
 import hmac
 import settings     # import django settings file
 
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import hashers
+from django.http import JsonResponse
+import json
 
+#   Create the signup view
+#   creates a new user when they signup
+#
+@crsf_exempt
+def create_user(request):
+    data = {}
+    if request.method == 'GET':
+        status = {'status': 'unsuccessful request'}
+        data = json.dumps(status)
+    elif request.method == 'POST':
+        if myUser.objects.filter(username=request.POST.get('username')):
+            status = ({'status': 'unsuccessful request'},{'response':'username already exists'})
+            data = json.dumps(status)
+        try:
+            user = myUser.objects.create(
+                username = request.POST.get('username'),
+                password = hashers.make_password(request.POST.get('password'))
+            )
+            user.save()
+        except Exception as e:
+            return JsonResponse({'status': str(e)})
+    return HttpResponse(data, content_type='application/json')
 
 #   Create the login view
 #
