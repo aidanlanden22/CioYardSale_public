@@ -25,5 +25,3 @@ class Student(models.Model):
         choices=YEAR_IN_SCHOOL_CHOICES,
         default=FIRSTYEAR,
     )
-
-    

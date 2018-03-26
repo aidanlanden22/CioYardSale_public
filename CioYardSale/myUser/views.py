@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import hashers
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 from .models import myUser, Authenticater
 
