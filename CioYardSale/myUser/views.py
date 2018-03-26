@@ -1,15 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth import hashers
+from django.views.decorators.csrf import csrf_exempt
 
-# Grab the models we made in this myUser application
 from .models import myUser, Authenticater
 
 # From the Project 4 documentation
 import os
 import hmac
-import settings     # import django settings file
-
-
+from CioYardSale import settings
 
 #   Create the login view
 #
@@ -87,7 +85,7 @@ def create_auth(request):
                 'status': str(e)
             }
             return JsonResponse(json_response)
-            
+
     json_response = {
         'status': 'Error: must make POST request'
     }
