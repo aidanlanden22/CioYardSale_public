@@ -16,3 +16,7 @@ docker-compose up
 ## During Demo
 
 Ask about how to run the tests in the web container
+
+The new User model
+  * Added a myUser app to the CioYardSale project (the models layer)
+  * 
