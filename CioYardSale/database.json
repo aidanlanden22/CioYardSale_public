@@ -279,17 +279,31 @@
         "year": "POST"
     }
 },
-{
+  {
     "model": "commodity.commodity",
     "pk": 1,
     "fields": {
+      "g_or_s": "G",
+      "title": "my item",
+      "picture": "commodity_pics/noimage.jpg",
+      "description": "I am selling this pizza",
+      "quantity": 1,
+      "price": "100.00",
+      "date_posted": "2018-02-19T23:31:56.121Z",
+      "date_expires": "2019-01-01T00:00:00Z"
+    }
+  },
+{
+    "model": "commodity.commodity",
+    "pk": 2,
+    "fields": {
         "g_or_s": "G",
-        "title": "my item",
+        "title": "Candy Corn",
         "picture": "commodity_pics/noimage.jpg",
-        "description": "I am selling this pizza",
-        "quantity": 1,
-        "price": "100.00",
-        "date_posted": "2018-02-19T23:31:56.121Z",
+        "description": "I am selling this candy corn",
+        "quantity": 100,
+        "price": "10.00",
+        "date_posted": "2018-02-20T23:31:56.121Z",
         "date_expires": "2019-01-01T00:00:00Z"
     }
 }
