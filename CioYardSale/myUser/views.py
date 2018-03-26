@@ -7,7 +7,10 @@ from .models import myUser, Authenticater
 # From the Project 4 documentation
 import os
 import hmac
-import settings     # import django settings file
+from CioYardSale import settings     # import django settings file
+
+from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import hashers
@@ -17,7 +20,7 @@ import json
 #   Create the signup view
 #   creates a new user when they signup
 #
-@crsf_exempt
+@csrf_exempt
 def create_user(request):
     data = {}
     if request.method == 'GET':
@@ -25,7 +28,7 @@ def create_user(request):
         data = json.dumps(status)
     elif request.method == 'POST':
         if myUser.objects.filter(username=request.POST.get('username')):
-            status = ({'status': 'unsuccessful request'},{'response':'username already exists'})
+            status = ({'status': 'unsuccessful request','response':'username already exists'})
             data = json.dumps(status)
         try:
             user = myUser.objects.create(
@@ -33,6 +36,9 @@ def create_user(request):
                 password = hashers.make_password(request.POST.get('password'))
             )
             user.save()
+            status = ({'status': 'user created successfully', 'response':{'username':user.username}})
+            data = json.dumps(status)
+            return HttpResponse(data, content_type='application/json')
         except Exception as e:
             return JsonResponse({'status': str(e)})
     return HttpResponse(data, content_type='application/json')
@@ -79,7 +85,7 @@ def create_auth(request):
         ).hexdigest()
 
         try:
-            user = customer.objects.get(username=request.POST.get('username'))
+            user = myUser.objects.get(username=request.POST.get('username'))
             auth = Authenticator(
                 user = user,
                 authenticater = authenticater,
@@ -90,3 +96,17 @@ def create_auth(request):
         except Exception as e:
             return JsonResponse({'status': str(e)})
     return JsonResponse({'status': 'Error: must make POST request'})
+
+
+def readAll(request):
+    if request.method == 'GET':
+        data = serializers.serialize("json", myUser.objects.all())
+        return HttpResponse(data, content_type='application/json')
+
+    if request.method == 'POST':
+        status = {'status': 'unsucessful request'}
+        data = json.dumps(status)
+        return HttpResponse(data, content_type='application/json')
+
+
+
