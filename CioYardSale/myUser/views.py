@@ -1,48 +1,61 @@
 from django.shortcuts import render
+from django.core import serializers
 from django.contrib.auth import hashers
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
+import json
 
 from .models import myUser, Authenticater
 
-# From the Project 4 documentation
 import os
 import hmac
-from CioYardSale import settings     # import django settings file
-
-from django.views.decorators.csrf import csrf_exempt
-from django.core import serializers
-
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import hashers
-from django.http import JsonResponse
-import json
+from CioYardSale import settings
 
 #   Create the signup view
 #   creates a new user when they signup
 #
 @csrf_exempt
 def create_user(request):
-    data = {}
+    json_response = {}
     if request.method == 'GET':
-        status = {'status': 'unsuccessful request'}
-        data = json.dumps(status)
-    elif request.method == 'POST':
+        json_response = {
+            'status': 'error',
+            'response': 'POST request expected. GET request found.',
+        }
+        return JsonResponse(json_response)
+
+    if request.method == 'POST':
         if myUser.objects.filter(username=request.POST.get('username')):
             status = ({'status': 'unsuccessful request','response':'username already exists'})
-            data = json.dumps(status)
+            json_response = {
+                'status': 'error',
+                'response': 'Username already exists.',
+            }
+            return JsonResponse(json_response)
+
         try:
             user = myUser.objects.create(
                 username = request.POST.get('username'),
                 password = hashers.make_password(request.POST.get('password'))
             )
             user.save()
-            status = ({'status': 'user created successfully', 'response':{'username':user.username}})
-            data = json.dumps(status)
-            return HttpResponse(data, content_type='application/json')
+            json_response = {
+                'status': 'success',
+                'response': {
+                    'username': user.username,
+                }
+            }
+            return JsonResponse(json_response)
+
         except Exception as e:
-            return JsonResponse({'status': str(e)})
-    return HttpResponse(data, content_type='application/json')
+            json_response = {
+                'status': 'error',
+                'response': str(e),
+            }
+            return JsonResponse(json_response)
+    return JsonResponse(json_response)
+
 #   Create the login view
 #
 #   needs to take in the username and password and authenticate the user
@@ -115,16 +128,29 @@ def create_auth(request):
             }
             return JsonResponse(json_response)
         except Exception as e:
-            return JsonResponse({'status': str(e)})
-    return JsonResponse({'status': 'Error: must make POST request'})
+            json_response = {
+                'status': 'error',
+                'response': str(e),
+            }
+            return JsonResponse(json_response)
 
+    json_response = {
+        'status': 'Error: must make POST request'
+    }
+    return JsonResponse(json_response)
 
+#   Create an method to get all the users
 def readAll(request):
     if request.method == 'GET':
-        data = serializers.serialize("json", myUser.objects.all())
-        return HttpResponse(data, content_type='application/json')
+        json_response = {
+            'status': 'success',
+            'response': serializers.serialize("json", myUser.objects.all()),
+        }
+        return JsonResponse(json_response)
 
     if request.method == 'POST':
-        status = {'status': 'unsucessful request'}
-        data = json.dumps(status)
-        return HttpResponse(data, content_type='application/json')
+        json_response = {
+            'status': 'error',
+            'response': 'POST request expected. GET request found.',
+        }
+        return JsonResponse(json_response)
