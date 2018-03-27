@@ -22,6 +22,19 @@ class SignUpUser(forms.ModelForm):
     email = forms.CharField(widget=forms.EmailInput, required=True)
     password = forms.CharField(widget=forms.PasswordInput, required=True)
 
+
+# Form for CIO's to list a new commodity
+class CreateCommodityForm(forms.ModelForm):
+	GOOD_OR_SERVICE = (
+    ('G', 'Good'),
+    ('S', 'Service'),
+    )
+	g_or_s = forms.ChoiceField(choices=GOOD_OR_SERVICE)
+	title = forms.CharField(required=True)
+	price = forms.DecimalField(max_digits=6, decimal_places=2)
+	description = forms.CharField(required=True)
+	quantity = forms.IntegerField(required=True)
+
 FIRSTYEAR = 'FIRST'
 SECONDYEAR = 'SECOND'
 THIRDYEAR = 'THIRD'
@@ -37,12 +50,13 @@ YEAR_IN_SCHOOL_CHOICES = (
         (NONSTUD, 'Non-Student'),
     )
 
-class RegisterStudent(forms.Form):
+class RegisterUser(forms.Form):
     username = forms.CharField(required=True)
     password = forms.CharField(widget=forms.PasswordInput, required=True)
-    year = forms.ChoiceField(
-        choices=YEAR_IN_SCHOOL_CHOICES,
-    )
+    #year = forms.ChoiceField(
+    #    choices=YEAR_IN_SCHOOL_CHOICES,
+    #)
+
 
 class LoginForm(forms.ModelForm):
     username = forms.CharField(required=True)

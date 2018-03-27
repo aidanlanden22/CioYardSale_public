@@ -18,18 +18,25 @@ def getSingleCommodity(request,pk):
 
     return JsonResponse(resp, safe=False)
 
-def registerStudent(request):
+@csrf_exempt
+def signupUser(request):
     if request.method == 'POST':
         data = {
             'username': request.POST.get('username'),
             'password':request.POST.get('password'),
-            'year':request.POST.get('year'),
+            #'year':request.POST.get('year'),
         }
-        req = urllib.request.Request('http://models-api:8000/api/v1/student/create/')
+
+        #if // 'Username already exists.'
+
+
+        encode_data = urllib.parse.urlencode(data).encode('utf-8')
+        req = urllib.request.Request('http://models-api:8000/api/v1/users/create_user/', data=encode_data, method='POST')
         resp_json = urllib.request.urlopen(req).read().decode('utf-8')
         resp = json.loads(resp_json)
 
-        #check if user already exists
+        #if resp['response'] == 'Username already exists.':
+        #    return resp
 
         #login user
     return JsonResponse(resp, safe=False)
@@ -52,4 +59,4 @@ def logoutUser(request):
         req = urllib.request.Request('http://models-api:8000/api/v1/auth/delete/', data=data_encoded, method='POST')
         resp_json = urllib.request.urlopen(req).read().decode('utf-8')
         resp = json.loads(resp_json)
-        return JsonResponse({'resp':resp})
+        return JsonResponse(resp, safe=False)
