@@ -58,4 +58,6 @@ class RegisterUser(forms.Form):
     #)
 
 
-
+class LoginForm(forms.ModelForm):
+    username = forms.CharField(required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)

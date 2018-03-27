@@ -6,7 +6,7 @@ models:
       - ./CioYardSale:/app
     ports:
       - "8001:8000"
-    command: bash -c "pip install Pillow && python manage.py loaddata database.json && mod_wsgi-express start-server --reload-on-changes --working-directory ./ ./CioYardSale/wsgi.py"
+    command: bash -c "pip install Pillow && python manage.py loaddata database.json && && mod_wsgi-express start-server --reload-on-changes --working-directory ./ ./CioYardSale/wsgi.py"
 
 exp:
    image: tp33/django
