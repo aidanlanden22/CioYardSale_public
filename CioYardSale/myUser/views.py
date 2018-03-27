@@ -49,7 +49,6 @@ def create_user(request):
             return JsonResponse(json_response)
 
         except Exception as e:
-<<<<<<< HEAD
             json_response = {
                 'status': 'error',
                 'response': str(e),
@@ -57,11 +56,6 @@ def create_user(request):
             return JsonResponse(json_response)
     return JsonResponse(json_response)
 
-
-=======
-            return JsonResponse({'status': str(e)})
-    return HttpResponse(data, content_type='application/json')
->>>>>>> 1bf5a5629b4919536cc2196e7a1247c6c6066bc9
 #   Create the login view
 #
 #   needs to take in the username and password and authenticate the user
@@ -134,7 +128,6 @@ def create_auth(request):
             }
             return JsonResponse(json_response)
         except Exception as e:
-<<<<<<< HEAD
             json_response = {
                 'status': 'error',
                 'response': str(e),
@@ -161,18 +154,3 @@ def readAll(request):
             'response': 'POST request expected. GET request found.',
         }
         return JsonResponse(json_response)
-=======
-            return JsonResponse({'status': str(e)})
-    return JsonResponse({'status': 'Error: must make POST request'})
-
-
-def readAll(request):
-    if request.method == 'GET':
-        data = serializers.serialize("json", myUser.objects.all())
-        return HttpResponse(data, content_type='application/json')
-
-    if request.method == 'POST':
-        status = {'status': 'unsucessful request'}
-        data = json.dumps(status)
-        return HttpResponse(data, content_type='application/json')
->>>>>>> 1bf5a5629b4919536cc2196e7a1247c6c6066bc9
