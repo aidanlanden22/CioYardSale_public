@@ -58,10 +58,10 @@
             </li>
                   <!-- TO DO -->
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'index' %}">Log In<span class="sr-only"></span></a>
+              <a class="nav-link" href="{% url 'login' %}">Log In<span class="sr-only"></span></a>
             </li>
           </ul>
-              {% if request.user.is_authenticated %}
+              {% if request.user.auth %}
                 <div class="nav-item dropdown">
                   <div class="row">
                     <div class="col-md-12">
@@ -86,7 +86,7 @@
               {% else%}
 
 
-    
+
               {% endif %}
           </div>
         </div>
