@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  {% if message %}
+    <div class="alert alert-danger" role="alert">
+      {{message}}
+    </div>
+  {% endif %}
+
+<div  style="margin:50px;">
+  <form method="POST">
+      {% csrf_token %}
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <label>{{ form.username.label}}</label>
+        </div>
+        <div class="col-md-3 form-group">
+            {{ form.username }}
+        </div>
+    </div>
+          <div class="row">
+        <div class="col-md-2 form-group">
+            <label>{{ form.password.label}}</label>
+        </div>
+        <div class="col-md-3 form-group">
+            {{ form.password }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <label>{{ form.year.label }}</label>
+        </div>
+        <div class="col-md-3 form-group">
+            {{ form.year }}
+        </div>
+    </div>
+    <br>
+    <div align="center">
+    <button type="submit" id="signup">Sign Up</button>
+    </div>
+</form>
+</div>
+
+</div>
+
+{% endblock content %}
