@@ -50,15 +50,9 @@ def signup_user(request):
             req = urllib.request.Request('http://exp-api:8000/signupUser/', data=data_encoded, method='POST')
             resp_json = urllib.request.urlopen(req).read().decode('utf-8')
             resp = json.loads(resp_json)
+            #if resp['response'] == 'Username already exists.':
+            #    return resp
 
-
-            #check if username is alreadyy taken
-
-            #auth = resp['auth']['auth']
-            #response = HttpResponseRedirect(reverse('home'))
-            #response.set_cookie("auth", auth)
-            #response.set_cookie("user", form.cleaned_data['username'])
-            #return response
             return HttpResponseRedirect('/')
         return render(request, 'signup.html', {'form': form, 'message': form.errors})
     else:

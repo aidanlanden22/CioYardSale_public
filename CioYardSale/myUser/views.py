@@ -27,7 +27,6 @@ def create_user(request):
 
     if request.method == 'POST':
         if myUser.objects.filter(username=request.POST.get('username')):
-            status = ({'status': 'unsuccessful request','response':'username already exists'})
             json_response = {
                 'status': 'error',
                 'response': 'Username already exists.',
