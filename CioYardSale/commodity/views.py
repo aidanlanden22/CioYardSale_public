@@ -38,31 +38,40 @@ def readAll(request):
 
 @csrf_exempt
 def create(request):
-
+    json_response = {}
     if request.method == 'POST':
-        form = CommodityForm(request.POST)
-
-        if form.is_valid():
-
+        try:
             selling = Commodity.objects.create(
-                g_or_s=form.cleaned_data['g_or_s'],
-                quantity=form.cleaned_data['quantity'],
-                description=form.cleaned_data['description'],
-                price=form.cleaned_data['price'],
-                date_expires=form.cleaned_data['date_expires'],
-                title=form.cleaned_data['title'],
-                cio=request.user
+                g_or_s=request.POST.get('g_or_s'),
+                quantity=request.POST.get('quantity'),
+                description=request.POST.get('description'),
+                price=request.POST.get('price'),
+                date_expires=request.POST.get('date_expires'),
+                title=request.POST.get('title'),
             )
-
             selling.save()
-
             data = serializers.serialize("json", [selling])
-            return HttpResponse(data, content_type='application/json')
+            json_response = {
+                'status': 'success',
+                'response': data,
+            }
+            return JsonResponse(json_response)
+
+        except Exception as e:
+            json_response = {
+                'status': 'error',
+                'response': str(e),
+            }
+            return JsonResponse(json_response)
 
     if request.method == 'GET':
-        status = {'status': 'unsucessful request'}
-        data = json.dumps(status)
-        return HttpResponse(data, content_type='application/json')
+        json_response = {
+            'status': 'error',
+            'response': 'POST request expected. GET request found.',
+        }
+        data = json.dumps(json_response)
+        return JsonResponse(json_response)
+    return JsonResponse(json_response)
 
 @csrf_exempt
 def update(request, pk):

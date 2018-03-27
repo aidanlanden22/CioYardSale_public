@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth import hashers
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
-# Grab the models we made in this myUser application
 from .models import myUser, Authenticater
 
 # From the Project 4 documentation
 import os
 import hmac
+<<<<<<< HEAD
 from CioYardSale import settings     # import django settings file
 
 from django.views.decorators.csrf import csrf_exempt
@@ -42,6 +44,9 @@ def create_user(request):
         except Exception as e:
             return JsonResponse({'status': str(e)})
     return HttpResponse(data, content_type='application/json')
+=======
+from CioYardSale import settings
+>>>>>>> 0cd7ddec6249b68ca2462b19dfa6f55b42765e5e
 
 #   Create the login view
 #
@@ -57,15 +62,31 @@ def login(request):
             user = myUser.objects.get(username=username)
             # Use hashers to check the password
             if hashers.check_password(password, user.password):
-                #
+                # Use the view below to create an auth token, then grab it
                 create_auth(request)
                 auth = (Authenticator.objects.get(user=user))
-                return JsonResponse({'status': 'success','auth':auth.authenticator},safe=False)
+                json_response = {
+                    'status': 'success',
+                    'auth': auth.authenticator,
+                }
+                return JsonResponse(json_response,safe=False)
             else:
-                return JsonResponse({'status': 'error','response':'Incorrect Password'})
+                json_response = {
+                    'status': 'error',
+                    'response':'Incorrect Password',
+                }
+                return JsonResponse(json_response)
         except ObjectDoesNotExist:
-            return JsonResponse({'status': 'error','response':'User does not exist'})
-    return JsonResponse({'status': 'error','response':'POST expected, GET found'})
+            json_response = {
+                'status': 'error',
+                'response':'User does not exist',
+            }
+            return JsonResponse(json_response)
+    json_response = {
+        'status': 'error',
+        'response':'POST request expected. GET request found.',
+    }
+    return JsonResponse(json_response)
 
 
 #   Create an authenticater
@@ -91,9 +112,15 @@ def create_auth(request):
                 authenticater = authenticater,
             )
             auth.save()
-            return JsonResponse({'status':'success', 'user':auth.user.username, 'auth':auth.authenticator,
-                                 'date_created':auth.date_created})
+            json_response = {
+                'status':'success',
+                'user':auth.user.username,
+                'auth':auth.authenticator,
+                'date_created':auth.date_created,
+            }
+            return JsonResponse(json_response)
         except Exception as e:
+<<<<<<< HEAD
             return JsonResponse({'status': str(e)})
     return JsonResponse({'status': 'Error: must make POST request'})
 
@@ -110,3 +137,14 @@ def readAll(request):
 
 
 
+=======
+            json_response = {
+                'status': str(e)
+            }
+            return JsonResponse(json_response)
+
+    json_response = {
+        'status': 'Error: must make POST request'
+    }
+    return JsonResponse(json_response)
+>>>>>>> 0cd7ddec6249b68ca2462b19dfa6f55b42765e5e

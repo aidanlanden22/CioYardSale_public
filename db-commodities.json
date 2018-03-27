@@ -1,0 +1,58 @@
+[
+{
+    "model": "commodity.commodity",
+    "pk": 1,
+    "fields": {
+        "g_or_s": "G",
+        "title": "UVA Riding T-Shirts",
+        "picture": "commodity_pics/noimage.jpg",
+        "description": "40th anniversary t-shirts we are selling to raise money for Nationals. ",
+        "quantity": 10,
+        "price": "20.00",
+        "date_posted": "2018-03-27T00:11:51.682Z",
+        "date_expires": "2018-06-01T20:00:00.928Z"
+    }
+},
+{
+    "model": "commodity.commodity",
+    "pk": 2,
+    "fields": {
+        "g_or_s": "S",
+        "title": "Horse Back Riding Lesson",
+        "picture": "commodity_pics/noimage.jpg",
+        "description": "One riding lesson. All proceeds go to CART, Charlottesville Area Riding Therapy",
+        "quantity": 1,
+        "price": "100.00",
+        "date_posted": "2018-03-27T00:13:04.670Z",
+        "date_expires": "2018-06-01T20:00:00.928Z"
+    }
+},
+{
+    "model": "commodity.commodity",
+    "pk": 3,
+    "fields": {
+        "g_or_s": "G",
+        "title": "Pizza",
+        "picture": "commodity_pics/noimage.jpg",
+        "description": "Slices of pizza and all profits go to sending a team to Nationals.",
+        "quantity": 100,
+        "price": "1.00",
+        "date_posted": "2018-03-27T00:19:44.444Z",
+        "date_expires": "2018-06-01T20:00:00.928Z"
+    }
+},
+{
+    "model": "commodity.commodity",
+    "pk": 4,
+    "fields": {
+        "g_or_s": "G",
+        "title": "Llama Coats",
+        "picture": "commodity_pics/noimage.jpg",
+        "description": "Llama fur coats straight from Patagonia",
+        "quantity": 10,
+        "price": "250.00",
+        "date_posted": "2018-03-27T00:20:41.179Z",
+        "date_expires": "2018-06-01T20:00:00.928Z"
+    }
+}
+]

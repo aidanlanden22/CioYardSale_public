@@ -6,5 +6,5 @@ urlpatterns = [
 	url(r'^api/v1/commodity/', include('commodity.urls')),
 	url(r'^api/v1/students/', include('students.urls')),
     url(r'^api/v1/cio/', include('cio.urls')),
-    url(r'^api/v1/myUser/', include('myUser.urls')),
+    url(r'^api/v1/users/', include('myUser.urls')),
 ]
