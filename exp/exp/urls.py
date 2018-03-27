@@ -11,5 +11,5 @@ urlpatterns = [
 	url(r'^api/v1/login/$', views.loginUser, name='login'),
 	url(r'^api/v1/logout/$', views.logoutUser, name='logout'),
 	url(r'^signupUser/$', views.signupUser,name='signupUser'),
-	url(r'^createCommodity/$', views.createComodity, name='createComodity')
+	url(r'^createCommodity/$', views.createCommodity, name='createCommodity')
 ]
