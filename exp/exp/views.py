@@ -42,7 +42,7 @@ def signupUser(request):
         return JsonResponse(resp, safe=False)
 @csrf_exempt
 def createCommodity(request):
-	if request.method = 'POST':
+	if request.method == 'POST':
 		data = {
 			'g_or_s': request.POST.get('g_or_s'),
 			'title': request.POST.get('title'),
@@ -58,9 +58,6 @@ def createCommodity(request):
 		resp = json.load(resp_json)
 
 		return JsonResponse(resp, safe=False)
-
-        #login user
-    return JsonResponse(resp, safe=False)
 
 def loginUser(request):
     if request.method == 'POST':
