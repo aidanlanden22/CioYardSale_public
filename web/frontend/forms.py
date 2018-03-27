@@ -24,7 +24,7 @@ class SignUpUser(forms.ModelForm):
 
 
 # Form for CIO's to list a new commodity
-class CreateCommodityForm(forms.ModelForm):
+class CreateCommodityForm(forms.Form):
 	GOOD_OR_SERVICE = (
     ('G', 'Good'),
     ('S', 'Service'),

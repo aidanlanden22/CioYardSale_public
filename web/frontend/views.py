@@ -60,7 +60,7 @@ def create_listing(request):
                 'description' : form.cleaned_data['description'],
                 'price' : form.cleaned_data['price'],
                 'quantity' : form.cleaned_data['quantity'],
-                'date_expires' : form.cleaned_data['date_expires']
+                # 'date_expires' : form.cleaned_data['date_expires']
             }
 
             data_encoded = urllib.parse.urlencode(data).encode('utf-8')
