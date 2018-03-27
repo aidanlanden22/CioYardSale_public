@@ -54,17 +54,18 @@ def create_listing(request):
     if request.method == 'POST':
         form = CreateCommodityForm(request.POST)
         if form.is_valid():
-            post_data = {
+            data = {
                 'g_or_s' : form.cleaned_data['g_or_s'],
                 'title' : form.cleaned_data['title'],
                 'description' : form.cleaned_data['description'],
                 'price' : form.cleaned_data['price'],
-                'quantity' : form.cleaned_data['quantity']
+                'quantity' : form.cleaned_data['quantity'],
+                'date_expires' : form.cleaned_data['date_expires']
             }
 
-            post_encoded = urllib.parse.urlencode(post_data).encode('utf-8')
+            data_encoded = urllib.parse.urlencode(data).encode('utf-8')
 
-            req = urllib.request.Request('http://exp-api:8000/api/v1/create/', data=post_encoded, method='POST')
+            req = urllib.request.Request('http://exp-api:8000/api/v1/create/', data=data_encoded, method='POST')
             resp_json = urllib.request.urlopen(req).read().decode('utf-8')
             resp = json.loads(resp_json)
             if not resp['status'] == 'success':

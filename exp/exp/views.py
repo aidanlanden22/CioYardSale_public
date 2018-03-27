@@ -38,6 +38,27 @@ def signupUser(request):
         #if resp['response'] == 'Username already exists.':
         #    return resp
 
+
+        return JsonResponse(resp, safe=False)
+@csrf_exempt
+def createCommodity(request):
+	if request.method = 'POST':
+		data = {
+			'g_or_s': request.POST.get('g_or_s'),
+			'title': request.POST.get('title'),
+			'description': request.POST.get('description'),
+			'price': request.POST.get('price'),
+			'quantity': request.POST.get('quantity'),
+			'date_expires': request.POST.get('date_expires')
+		}
+
+		encode_data = urlib.parse.urlencode(data).encode('utf-8')
+		req = urllib.request.Request('http://models-api:8000/api/v1/commodity/create/', data=encode_data, method='POST')
+		resp_json = urllib.request.urlopen(req).read().decode('utf-8')
+		resp = json.load(resp_json)
+
+		return JsonResponse(resp, safe=False)
+
         #login user
     return JsonResponse(resp, safe=False)
 
