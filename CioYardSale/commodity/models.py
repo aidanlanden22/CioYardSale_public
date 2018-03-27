@@ -1,6 +1,8 @@
 from django.db import models
 from cio.models import Cio
 
+from django.utils import timezone
+
 class Commodity(models.Model):
     #link commodity to the cio selling it
     #CIO = models.ForeignKey('CIO', null=True, blank=True, on_delete=models.SET_NULL)
@@ -49,4 +51,4 @@ class Commodity(models.Model):
         blank=True
     )
 
-    date_expires = models.DateTimeField()
+    date_expires = models.DateTimeField(default=timezone.now, blank=True)
