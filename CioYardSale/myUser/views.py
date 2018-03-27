@@ -8,7 +8,6 @@ from .models import myUser, Authenticater
 # From the Project 4 documentation
 import os
 import hmac
-<<<<<<< HEAD
 from CioYardSale import settings     # import django settings file
 
 from django.views.decorators.csrf import csrf_exempt
@@ -44,10 +43,6 @@ def create_user(request):
         except Exception as e:
             return JsonResponse({'status': str(e)})
     return HttpResponse(data, content_type='application/json')
-=======
-from CioYardSale import settings
->>>>>>> 0cd7ddec6249b68ca2462b19dfa6f55b42765e5e
-
 #   Create the login view
 #
 #   needs to take in the username and password and authenticate the user
@@ -120,7 +115,6 @@ def create_auth(request):
             }
             return JsonResponse(json_response)
         except Exception as e:
-<<<<<<< HEAD
             return JsonResponse({'status': str(e)})
     return JsonResponse({'status': 'Error: must make POST request'})
 
@@ -134,17 +128,3 @@ def readAll(request):
         status = {'status': 'unsucessful request'}
         data = json.dumps(status)
         return HttpResponse(data, content_type='application/json')
-
-
-
-=======
-            json_response = {
-                'status': str(e)
-            }
-            return JsonResponse(json_response)
-
-    json_response = {
-        'status': 'Error: must make POST request'
-    }
-    return JsonResponse(json_response)
->>>>>>> 0cd7ddec6249b68ca2462b19dfa6f55b42765e5e
