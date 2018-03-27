@@ -36,7 +36,7 @@ def view_item(request, pk):
 
     return render(request, 'item.html',context)
 
-<<<<<<< listing_frontend
+
 def create_listing(request):
 
     # Try to get the authenticator cookie
@@ -44,7 +44,7 @@ def create_listing(request):
 
     if not auth: 
 
-        return HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing")
+        return HttpResponseRedirect(reverse("login") + "?next=" + reverse("createcommodity")
 
     if request.method = 'GET':
         form = CreateCommodityForm()
@@ -82,10 +82,6 @@ def create_listing(request):
 
 
 
-        template_name = 'templates/commodity/createcommodity.html'
-
-
-=======
 @csrf_exempt
 def signup_user(request):
     form = RegisterUser
@@ -107,4 +103,4 @@ def signup_user(request):
         return render(request, 'signup.html', {'form': form, 'message': form.errors})
     else:
         return render(request, 'signup.html', {'form': form})
->>>>>>> master
+
