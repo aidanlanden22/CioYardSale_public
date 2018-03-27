@@ -44,7 +44,7 @@ def create_listing(request):
     auth = request.COOKIES.get('auth')
 
     if not auth:
-        return HttpResponseRedirect(reverse("login") + "?next=" + reverse("createcommodity"))
+        return HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing"))
 
 
     if request.method == 'GET':
@@ -70,12 +70,12 @@ def create_listing(request):
             resp = json.loads(resp_json)
             if not resp['status'] == 'success':
                 if resp['response']:
-                    response = HttpResponseRedirect(reverse("login") + "?next=" + reverse("createcommodity"))
+                    response = HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing"))
                     response.delete_cookie('auth')
                     response.delete_cookie('user')
                     return response
                 else:
-                    return HttpResponseRedirect(reverse("login") + "?next=" + reverse("createcommodity"))
+                    return HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing"))
             return index(request)
         else:
             return JsonResponse({'status': 'error', 'response': form.errors})
