@@ -18,7 +18,7 @@
               <a class="btn btn-danger btn-md mb-4" href="{% url 'logout' %}">Logout</a>
           {% else %}
               <form method="POST"> {% csrf_token %}
-                  {{ form.as_table }}
+                  {{ login_form.as_table }}
                   <button class="btn btn-success btn-md my-4" type="submit">Submit</button>
               </form>
           {% endif %}

@@ -52,42 +52,26 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
           <div class="mx-2 pt-3" style="font-size:16px;">
-              <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'signup_user' %}">Sign Up<span class="sr-only"></span></a>
-            </li>
-                  <!-- TO DO -->
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'login' %}">Log In<span class="sr-only"></span></a>
-            </li>
-          </ul>
-              {% if request.user.auth %}
-                <div class="nav-item dropdown">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <a style="color: black" class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="row">
-                          <div class="col-md-2">
-                            <i class="fas fa-user"></i>
-                          </div>
-                          <div class="col-md-2">
-                            <p>{{ request.user.username }}</p>
-                          </div>
-                        </div>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'students:profile' %}">Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'students:logout' %}">Sign Out</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <ul class="navbar-nav mr-auto">
+
+              {% if request.COOKIES.user %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'logout' %}">Log Out<span class="sr-only"></span></a>
+                </li>
+
               {% else%}
 
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'signup_user' %}">Sign Up<span class="sr-only"></span></a>
+                </li>
 
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'login' %}">Log In<span class="sr-only"></span></a>
+                </li>
 
               {% endif %}
+              
+            </ul>
           </div>
         </div>
       </nav>

@@ -70,13 +70,21 @@ def login(request):
             # Use hashers to check the password
             if hashers.check_password(password, user.password):
                 # Use the view below to create an auth token, then grab it
-                create_auth(request)
-                auth = (Authenticater.objects.get(myUser=user))
-                json_response = {
-                    'status': 'success',
-                    'auth': auth.authenticator,
-                }
-                return JsonResponse(json_response,safe=False)
+                try:
+                    auth = (Authenticater.objects.get(myUser=user))
+                    json_response = {
+                        'status': 'success',
+                        'auth': auth.authenticator,
+                    }
+                    return JsonResponse(json_response,safe=False)
+                except Authenticater.DoesNotExist:
+                    create_auth(request)
+                    auth = (Authenticater.objects.get(myUser=user))
+                    json_response = {
+                        'status': 'success',
+                        'auth': auth.authenticator,
+                    }
+                    return JsonResponse(json_response,safe=False)
             else:
                 json_response = {
                     'status': 'error',
@@ -177,7 +185,7 @@ def delete_auth(request):
 
         del_auth.delete()
         return JsonResponse(json_response)
-        
+
     json_response = {
         'status': 'error',
         'response': 'Expected a POST request. Got a GET request.',
