@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import *
 
 from . import forms
 
@@ -32,3 +33,27 @@ def view_item(request, pk):
     }
 
     return render(request, 'item.html',context)
+
+def register_student(request):
+    form = RegisterStudent
+    if request.method == 'POST':
+        form = RegisterStudent(request.POST)
+        if form.is_valid():
+            data = {'username': form.cleaned_data['username'],
+                         'password': form.cleaned_data['password'],
+                         'year': form.cleaned_data['year']}
+            data_encoded = urllib.parse.urlencode(data).encode('utf-8')
+            req = urllib.request.Request('http://exp-api:8000/registerStudent/', data=data_encoded, method='POST')
+            resp_json = urllib.request.urlopen(req).read().decode('utf-8')
+            resp = json.loads(resp_json)
+
+            #check if username is alreadyy taken
+
+            #auth = resp['auth']['auth']
+            #response = HttpResponseRedirect(reverse('home'))
+            #response.set_cookie("auth", auth)
+            #response.set_cookie("user", form.cleaned_data['username'])
+            #return response
+        return render(request, 'signup.html', {'form': form, 'message': form.errors})
+    else:
+        return render(request, 'signup.html', {'form': form})

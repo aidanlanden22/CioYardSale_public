@@ -21,3 +21,27 @@ class SignUpUser(forms.ModelForm):
     last_name = forms.CharField(required=True)
     email = forms.CharField(widget=forms.EmailInput, required=True)
     password = forms.CharField(widget=forms.PasswordInput, required=True)
+
+FIRSTYEAR = 'FIRST'
+SECONDYEAR = 'SECOND'
+THIRDYEAR = 'THIRD'
+FOURTHYEAR = 'FOURTH'
+POSTGRAD = 'POST'
+NONSTUD = 'NON'
+YEAR_IN_SCHOOL_CHOICES = (
+        (FIRSTYEAR, 'First Year'),
+        (SECONDYEAR, 'Second Year'),
+        (THIRDYEAR, 'Third Year'),
+        (FOURTHYEAR, 'Fourth Year'),
+        (POSTGRAD, 'Post-Grad'),
+        (NONSTUD, 'Non-Student'),
+    )
+
+class RegisterStudent(forms.Form):
+    username = forms.CharField(required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
+    year = forms.ChoiceField(
+        choices=YEAR_IN_SCHOOL_CHOICES,
+    )
+
+
