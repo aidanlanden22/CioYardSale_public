@@ -42,13 +42,12 @@ def create(request):
     if request.method == 'POST':
         try:
             selling = Commodity.objects.create(
-                g_or_s=form.cleaned_data['g_or_s'],
-                quantity=form.cleaned_data['quantity'],
-                description=form.cleaned_data['description'],
-                price=form.cleaned_data['price'],
-                date_expires=form.cleaned_data['date_expires'],
-                title=form.cleaned_data['title'],
-                cio=request.user
+                g_or_s=request.POST.get('g_or_s'),
+                quantity=request.POST.get('quantity'),
+                description=request.POST.get('description'),
+                price=request.POST.get('price'),
+                date_expires=request.POST.get('date_expires'),
+                title=request.POST.get('title'),
             )
             selling.save()
             data = serializers.serialize("json", [selling])
@@ -58,10 +57,10 @@ def create(request):
             }
             return JsonResponse(json_response)
 
-        except:
+        except Exception as e:
             json_response = {
                 'status': 'error',
-                'response':'Could not create the object',
+                'response': str(e),
             }
             return JsonResponse(json_response)
 
