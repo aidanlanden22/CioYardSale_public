@@ -21,7 +21,7 @@ docker-compose up
 
 Use the parameters in the BODY section. Format the parameters like so.
 
-![image](https://github.com/emmafass/CioYardSale/images/postman_create_commodity.png)
+![image](https://github.com/emmafass/CioYardSale/blob/master/images/postman_create_commodity.png)
 
 Even though it says there was an error, if you check readAll the item is created.
 
