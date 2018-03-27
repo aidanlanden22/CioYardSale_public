@@ -10,7 +10,8 @@
   {% endif %}
 
 <div  style="margin:50px;">
-  <form method="POST"> {% csrf_token %}
+  <form method="POST">
+      {% csrf_token %}
     <div class="row">
         <div class="col-md-2 form-group">
             <label>{{ form.username.label}}</label>

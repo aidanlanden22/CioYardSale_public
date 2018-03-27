@@ -37,11 +37,11 @@ YEAR_IN_SCHOOL_CHOICES = (
         (NONSTUD, 'Non-Student'),
     )
 
-class RegisterStudent(forms.Form):
+class RegisterUser(forms.Form):
     username = forms.CharField(required=True)
     password = forms.CharField(widget=forms.PasswordInput, required=True)
-    year = forms.ChoiceField(
-        choices=YEAR_IN_SCHOOL_CHOICES,
-    )
+    #year = forms.ChoiceField(
+    #    choices=YEAR_IN_SCHOOL_CHOICES,
+    #)
 
 
