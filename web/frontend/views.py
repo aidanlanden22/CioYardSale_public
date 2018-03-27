@@ -36,17 +36,16 @@ def view_item(request, pk):
 
     return render(request, 'item.html',context)
 
-<<<<<<< listing_frontend
 def create_listing(request):
 
     # Try to get the authenticator cookie
     auth = request.COOKIES.get('auth')
 
-    if not auth: 
+    if not auth:
 
         return HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing")
 
-    if request.method = 'GET':
+    if request.method == 'GET':
         form = CreateCommodityForm()
         return render(request, 'commodity/createcommodity.html', {'form': form, 'created' : false})
 
@@ -75,17 +74,14 @@ def create_listing(request):
                 else:
                     return HttpResponseRedirect(reverse("login") + "?next=" + reverse("createcommodity"))
             return index(request)
-        else: 
+        else:
             return JsonResponse({'status': 'error', 'response': form.errors})
 
     return render(request, 'index.html')
 
 
+        #template_name = 'templates/commodity/createcommodity.html'
 
-        template_name = 'templates/commodity/createcommodity.html'
-
-
-=======
 @csrf_exempt
 def signup_user(request):
     form = RegisterUser
@@ -100,11 +96,11 @@ def signup_user(request):
             req = urllib.request.Request('http://exp-api:8000/signupUser/', data=data_encoded, method='POST')
             resp_json = urllib.request.urlopen(req).read().decode('utf-8')
             resp = json.loads(resp_json)
-            #if resp['response'] == 'Username already exists.':
-            #    return resp
+            if resp['response'] == 'Username already exists.':
+                return render(request, 'signup.html', {'form': form, 'message': "Error: User with that username already exists."})
 
             return HttpResponseRedirect('/')
         return render(request, 'signup.html', {'form': form, 'message': form.errors})
     else:
         return render(request, 'signup.html', {'form': form})
->>>>>>> master
+

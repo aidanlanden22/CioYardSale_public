@@ -29,7 +29,7 @@ class CreateCommodityForm(forms.ModelForm):
     ('G', 'Good'),
     ('S', 'Service'),
     )
-	g_or_s = forms.CharField(max_length=1, choices=GOOD_OR_SERVICE, default='G')
+	g_or_s = forms.ChoiceField(choices=GOOD_OR_SERVICE)
 	title = forms.CharField(required=True)
 	price = forms.DecimalField(max_digits=6, decimal_places=2)
 	description = forms.CharField(required=True)
