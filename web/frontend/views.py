@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import *
+from django.core.urlresolvers import reverse
 
 from . import forms
 
@@ -43,12 +44,12 @@ def create_listing(request):
     auth = request.COOKIES.get('auth')
 
     if not auth:
-        return HttpResponseRedirect(reverse("login") + "?next=" + reverse("createcommodity")
+        return HttpResponseRedirect(reverse("login") + "?next=" + reverse("createcommodity"))
 
 
     if request.method == 'GET':
         form = CreateCommodityForm()
-        return render(request, 'commodity/createcommodity.html', {'form': form, 'created' : false})
+        return render(request, 'commodity/createcommodity.html', {'form': form, 'created' : False})
 
     if request.method == 'POST':
         form = CreateCommodityForm(request.POST)
@@ -99,7 +100,7 @@ def signup_user(request):
             resp = json.loads(resp_json)
             if resp['response'] == 'Username already exists.':
                 return render(request, 'signup.html', {'form': form, 'message': "Error: User with that username already exists."})
-
+            login(request)
             return HttpResponseRedirect('/')
         return render(request, 'signup.html', {'form': form, 'message': form.errors})
     else:
