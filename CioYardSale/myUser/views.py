@@ -72,7 +72,7 @@ def login(request):
             if hashers.check_password(password, user.password):
                 # Use the view below to create an auth token, then grab it
                 create_auth(request)
-                auth = (Authenticator.objects.get(user=user))
+                auth = (Authenticater.objects.get(myUser=user))
                 json_response = {
                     'status': 'success',
                     'auth': auth.authenticator,
@@ -84,10 +84,10 @@ def login(request):
                     'response':'Incorrect Password',
                 }
                 return JsonResponse(json_response)
-        except ObjectDoesNotExist:
+        except Exception as e:
             json_response = {
                 'status': 'error',
-                'response':'User does not exist',
+                'response': str(e),
             }
             return JsonResponse(json_response)
     json_response = {
@@ -115,9 +115,9 @@ def create_auth(request):
 
         try:
             user = myUser.objects.get(username=request.POST.get('username'))
-            auth = Authenticator(
-                user = user,
-                authenticater = authenticater,
+            auth = Authenticater.objects.create(
+                myUser = user,
+                authenticator = authenticater,
             )
             auth.save()
             json_response = {
@@ -154,3 +154,33 @@ def readAll(request):
             'response': 'POST request expected. GET request found.',
         }
         return JsonResponse(json_response)
+
+# Delete the auth token for a user
+#
+# needed so that a user can logout
+#
+@csrf_exempt
+def delete_auth(request):
+    if request.method == 'POST':
+        try:
+            del_auth = Authenticator.objects.get(authenticator=request.POST.get('auth'))
+            json_response = {
+                'status': 'success',
+                'user': del_auth.user.username,
+                'auth':del_auth.authenticator,
+            }
+        except ObjectDoesNotExist:
+            json_response = {
+                'status': 'error',
+                'response': 'Auth does not exist',
+            }
+            return JsonResponse(json_response)
+
+        del_auth.delete()
+        return JsonResponse(json_response)
+        
+    json_response = {
+        'status': 'error',
+        'response': 'Expected a POST request. Got a GET request.',
+    }
+    return JsonResponse(json_response)
