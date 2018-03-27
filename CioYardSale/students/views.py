@@ -33,9 +33,9 @@ def create(request):
         try:
             myUser = User.objects.create_user(
                 username = request.POST.get('username'),
-                first_name = request.POST.get('first_name'),
-                last_name = request.POST.get('last_name'),
-                email = request.POST.get('email'),
+                #first_name = request.POST.get('first_name'),
+                #last_name = request.POST.get('last_name'),
+                #email = request.POST.get('email'),
                 password = hashers.make_password(request.POST.get('password'))
             )
             myUser.save()
