@@ -43,7 +43,7 @@ def create_listing(request):
 
     if not auth:
 
-        return HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing")
+        return HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing"))
 
     if request.method == 'GET':
         form = CreateCommodityForm()
@@ -89,7 +89,7 @@ def signup_user(request):
         form = RegisterUser(request.POST)
         if form.is_valid():
             data = {'username': form.cleaned_data['username'],
-                         'password': form.cleaned_data['password'],
+                    'password': form.cleaned_data['password'],
                          #'year': form.cleaned_data['year']
                 }
             data_encoded = urllib.parse.urlencode(data).encode('utf-8')
@@ -103,4 +103,3 @@ def signup_user(request):
         return render(request, 'signup.html', {'form': form, 'message': form.errors})
     else:
         return render(request, 'signup.html', {'form': form})
-
