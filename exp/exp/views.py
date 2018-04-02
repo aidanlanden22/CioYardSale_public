@@ -74,7 +74,7 @@ def logoutUser(request):
     if request.method == 'POST':
         data = {'auth': request.POST.get('auth')}
         data_encoded = urllib.parse.urlencode(data).encode('utf-8')
-        req = urllib.request.Request('http://models-api:8000/api/v1/auth/delete/', data=data_encoded, method='POST')
+        req = urllib.request.Request('http://models-api:8000/api/v1/users/delete_auth/', data=data_encoded, method='POST')
         resp_json = urllib.request.urlopen(req).read().decode('utf-8')
         resp = json.loads(resp_json)
-        return JsonResponse(resp, safe=False)
+        return JsonResponse({'resp':resp})
