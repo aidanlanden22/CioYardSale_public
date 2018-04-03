@@ -6,8 +6,21 @@
   <div class="col-6 mx-auto">
     <form action="/createListing/" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit" class="my-5"/>
+        {% for field in form %}
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label>{{ field.label_tag }}</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+                <label>{{ field }}</label>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <input type="submit" value="Submit" class="my-5 btn btn-success"/>
     </form>
   </div>
 </row>
