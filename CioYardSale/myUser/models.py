@@ -12,5 +12,5 @@ class myUser(models.Model):
 
 class Authenticater(models.Model):
     myUser = models.ForeignKey(myUser)
-    authenticator = models.CharField(max_length=100,primary_key=True)
+    authenticator = models.CharField(max_length=255,primary_key=True)
     date_created = models.DateTimeField(default=timezone.now)

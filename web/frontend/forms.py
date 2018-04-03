@@ -29,10 +29,10 @@ class CreateCommodityForm(forms.Form):
     ('G', 'Good'),
     ('S', 'Service'),
     )
-	g_or_s = forms.ChoiceField(choices=GOOD_OR_SERVICE)
+	g_or_s = forms.ChoiceField(choices=GOOD_OR_SERVICE, label="Good or Service")
 	title = forms.CharField(required=True)
 	price = forms.DecimalField(max_digits=6, decimal_places=2)
-	description = forms.CharField(required=True)
+	description = forms.CharField(required=True, widget=forms.Textarea(attrs={'rows': 4, 'cols': 40}))
 	quantity = forms.IntegerField(required=True)
 
 FIRSTYEAR = 'FIRST'

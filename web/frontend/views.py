@@ -145,6 +145,25 @@ def login(request):
 
 # Log out the current user
 def logout(request):
+    data = {}
+
+    # if request.method == 'GET':
+    #     if request.COOKIES.get('auth'):
+    #         json_response = {
+    #             'status': 'error',
+    #             'response': "Received a GET request. Expected a POST request.",
+    #             'data': data,
+    #             'auth': request.COOKIES.get('auth'),
+    #         }
+    #         return JsonResponse(json_response)
+    #     json_response = {
+    #         'status': 'error',
+    #         'response': "Received a GET request. Expected a POST request. No Auth token.",
+    #         'data': data,
+    #         'auth': request.COOKIES.get('auth'),
+    #     }
+    #     return JsonResponse(json_response)
+
     try:
         authenticator = request.COOKIES['auth']
         data = {'auth': authenticator}
@@ -159,6 +178,11 @@ def logout(request):
         response = HttpResponseRedirect('/login')
         response.delete_cookie('auth')
         response.delete_cookie('user')
-    except:
-        return JsonResponse({'status': 'error'})
+    except Exception as e:
+        json_response = {
+            'status': 'error',
+            'response': e.read(),
+            'data': data,
+        }
+        return JsonResponse(json_response)
     return response

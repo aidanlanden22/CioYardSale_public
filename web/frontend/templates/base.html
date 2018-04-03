@@ -55,8 +55,15 @@
             <ul class="navbar-nav mr-auto">
 
               {% if request.COOKIES.user %}
+
+                <li class="nav-item">
+                  <a class="nav-link disabled">welcome, {{ request.COOKIES.user }}<span class="sr-only"></span></a>
+                </li>
+
                 <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'logout' %}">Log Out<span class="sr-only"></span></a>
+                  <a class="nav-link" href="{% url 'logout' %}">
+                    Log Out<span class="sr-only"></span>
+                  </a>
                 </li>
 
               {% else%}
@@ -70,7 +77,7 @@
                 </li>
 
               {% endif %}
-              
+
             </ul>
           </div>
         </div>
