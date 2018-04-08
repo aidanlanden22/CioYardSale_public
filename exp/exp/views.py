@@ -24,22 +24,14 @@ def signupUser(request):
         data = {
             'username': request.POST.get('username'),
             'password':request.POST.get('password'),
-            #'year':request.POST.get('year'),
         }
-
-        #if // 'Username already exists.'
-
-
         encode_data = urllib.parse.urlencode(data).encode('utf-8')
         req = urllib.request.Request('http://models-api:8000/api/v1/users/create_user/', data=encode_data, method='POST')
         resp_json = urllib.request.urlopen(req).read().decode('utf-8')
         resp = json.loads(resp_json)
 
-        #if resp['response'] == 'Username already exists.':
-        #    return resp
-
-
         return JsonResponse(resp, safe=False)
+
 @csrf_exempt
 def createCommodity(request):
 	if request.method == 'POST':
@@ -51,11 +43,10 @@ def createCommodity(request):
 			'quantity': request.POST.get('quantity'),
 			'date_expires': request.POST.get('date_expires')
 		}
-
-		encode_data = urlib.parse.urlencode(data).encode('utf-8')
+		encode_data = urllib.parse.urlencode(data).encode('utf-8')
 		req = urllib.request.Request('http://models-api:8000/api/v1/commodity/create/', data=encode_data, method='POST')
 		resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-		resp = json.load(resp_json)
+		resp = json.loads(resp_json)
 
 		return JsonResponse(resp, safe=False)
 
