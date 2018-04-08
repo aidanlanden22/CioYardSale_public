@@ -46,7 +46,6 @@ def create_listing(request):
     if not auth:
         return HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing"))
 
-
     if request.method == 'GET':
         form = CreateCommodityForm()
         return render(request, 'commodity/createcommodity.html', {'form': form, 'created' : False})
@@ -60,29 +59,22 @@ def create_listing(request):
                 'description' : form.cleaned_data['description'],
                 'price' : form.cleaned_data['price'],
                 'quantity' : form.cleaned_data['quantity'],
-                # 'date_expires' : form.cleaned_data['date_expires']
+                'date_expires' : '2012-09-04 06:00:00.000000-08:00',
             }
 
             data_encoded = urllib.parse.urlencode(data).encode('utf-8')
             req = urllib.request.Request('http://exp-api:8000/createCommodity/', data=data_encoded, method='POST')
             resp_json = urllib.request.urlopen(req).read().decode('utf-8')
             resp = json.loads(resp_json)
-            if not resp['status'] == 'success':
-                if resp['response']:
-                    response = HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing"))
-                    response.delete_cookie('auth')
-                    response.delete_cookie('user')
-                    return response
-                else:
-                    return HttpResponseRedirect(reverse("login") + "?next=" + reverse("create_listing"))
-            return index(request)
+
+            if resp:
+                return HttpResponseRedirect('/')
+            else:
+                return JsonResponse({'status': 'error', 'response': 'Did not get a response'})
         else:
-            return JsonResponse({'status': 'error', 'response': form.errors})
+            return JsonResponse({'status': 'error', 'response': 'Form input invalid', 'Errors': form.errors})
 
-    return render(request, 'index.html')
-
-
-        #template_name = 'templates/commodity/createcommodity.html'
+    return HttpResponseRedirect('/')
 
 @csrf_exempt
 def signup_user(request):
