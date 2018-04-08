@@ -18,11 +18,29 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4 mx-auto text-center mb-5">
-    <div class="list-group">
+  <div class="col-md-8 mx-auto text-center mb-5">
+    <div class="list-group list-group-flush">
+      <a class="list-group-item" style="font-weight: bold;">
+        <div class="row">
+          <div class="col-6">
+            Item Title
+          </div>
+          <div class="col-6">
+            Item Price
+          </div>
+        </div>
+      </a>
+
       {% for item in items %}
         <a href="{% url 'view_item' item.pk %}" class="list-group-item list-group-item-action">
-          {{ item.fields.title }}
+          <div class="row">
+            <div class="col-6">
+              {{ item.fields.title }}
+            </div>
+            <div class="col-6">
+              ${{ item.fields.price }}
+            </div>
+          </div>
         </a>
       {% endfor %}
     </div>
