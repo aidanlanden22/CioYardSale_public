@@ -64,8 +64,7 @@ def create_listing(request):
             }
 
             data_encoded = urllib.parse.urlencode(data).encode('utf-8')
-
-            req = urllib.request.Request('http://exp-api:8000/api/v1/create/', data=data_encoded, method='POST')
+            req = urllib.request.Request('http://exp-api:8000/createCommodity/', data=data_encoded, method='POST')
             resp_json = urllib.request.urlopen(req).read().decode('utf-8')
             resp = json.loads(resp_json)
             if not resp['status'] == 'success':
