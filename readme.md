@@ -27,8 +27,9 @@ Even though it says there was an error, if you check readAll the item is created
 
 ## During Demo
 
+Ask about the time field in the create commodity function - getting a strange response. (See pic above)
+
 Ask about how to run the tests in the web container
 
 The new User model
   * Added a myUser app to the CioYardSale project (the models layer)
-  *
