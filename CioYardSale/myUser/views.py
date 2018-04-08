@@ -4,6 +4,7 @@ from django.contrib.auth import hashers
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
 import json
 
 from .models import myUser, Authenticater
@@ -170,10 +171,9 @@ def readAll(request):
 def delete_auth(request):
     if request.method == 'POST':
         try:
-            del_auth = Authenticator.objects.get(authenticator=request.POST.get('auth'))
+            del_auth = Authenticater.objects.get(authenticator=request.POST.get('auth'))
             json_response = {
                 'status': 'success',
-                'user': del_auth.user.username,
                 'auth':del_auth.authenticator,
             }
         except ObjectDoesNotExist:
@@ -182,9 +182,8 @@ def delete_auth(request):
                 'response': 'Auth does not exist',
             }
             return JsonResponse(json_response)
-
         del_auth.delete()
-        return JsonResponse(json_response)
+        return JsonResponse(json_response, safe=False)
 
     json_response = {
         'status': 'error',
