@@ -37,6 +37,14 @@ def view_item(request, pk):
 
     return render(request, 'item.html',context)
 
+def search(request):
+
+    context = {
+        'items': 'list of items',
+    }
+
+    return render(request, 'search_results.html', context)
+
 @csrf_exempt
 def create_listing(request):
 
@@ -137,23 +145,6 @@ def login(request):
 # Log out the current user
 def logout(request):
     data = {}
-
-    # if request.method == 'GET':
-    #     if request.COOKIES.get('auth'):
-    #         json_response = {
-    #             'status': 'error',
-    #             'response': "Received a GET request. Expected a POST request.",
-    #             'data': data,
-    #             'auth': request.COOKIES.get('auth'),
-    #         }
-    #         return JsonResponse(json_response)
-    #     json_response = {
-    #         'status': 'error',
-    #         'response': "Received a GET request. Expected a POST request. No Auth token.",
-    #         'data': data,
-    #         'auth': request.COOKIES.get('auth'),
-    #     }
-    #     return JsonResponse(json_response)
 
     try:
         authenticator = request.COOKIES['auth']
