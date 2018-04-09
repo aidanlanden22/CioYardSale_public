@@ -104,7 +104,7 @@ def createCommodity(request):
         resp = json.loads(resp_json)
 
         # Straight from Pinckney documentation
-        producer.send('new-listings-topic', json.dumps(item).encode('utf-8'))
+        producer.send('new-listings-topic', json.dumps(data).encode('utf-8'))
 
         return JsonResponse(resp, safe=False)
 
