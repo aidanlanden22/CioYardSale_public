@@ -54,29 +54,5 @@
         "date_posted": "2018-03-27T00:20:41.179Z",
         "date_expires": "2018-06-01T20:00:00.928Z"
     }
-},
-{
-    "model": "myUser.myuser",
-    "pk": 1,
-    "fields": {
-        "username": "emma",
-        "password": "pbkdf2_sha256$30000$HC1dXy96ow5L$e4nY8DWRrX1D9cUlc1gcIkBMY05mQ8CCrC1lPYHIFu4="
-    }
-},
-{
-    "model": "myUser.myuser",
-    "pk": 2,
-    "fields": {
-        "username": "summer",
-        "password": "pbkdf2_sha256$30000$ypGwLyiGfXgl$IOVYU+Z4gu1lf/3aJIyEsqvvnR9JnVjxeWu6ZkcDN/s="
-    }
-},
-{
-    "model": "myUser.myuser",
-    "pk": 3,
-    "fields": {
-        "username": "aidan",
-        "password": "pbkdf2_sha256$30000$ooCY0IP1Omvm$RpmisPy3Jtfuw0P4RCfAElSLJKNrv1bfwNU0fLvWE/I="
-    }
 }
 ]
