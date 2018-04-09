@@ -38,12 +38,37 @@ def view_item(request, pk):
     return render(request, 'item.html',context)
 
 def search(request):
+    if request.method == 'GET':
+        # 'query' is the name field in the search input in base.html
+        data = request.GET.get('query')
+        json_response = {
+            'status': 'success',
+            'response': 'Search received a POST requst',
+            'query_data': data,
+        }
+        return JsonResponse(json_response, safe=False)
+        # url = 'http://exp-api:8000/api/v1/searchItems'
+        # resp = requests.get(url, params={'query': data})
+        # resp_json = resp.text
+        # if json.loads(resp_json)['itemsExist']:
+        #     items = json.loads(resp_json)['items']
+        #     return render(request, 'searchResults.html', {'items': items})
+        # else:
+        #     messages.error(request, 'No items exist, create an item before searching.')
+        #     response = HttpResponseRedirect(reverse('home'))
+        #     return response
+    else:
+        json_response = {
+            'status': 'error',
+            'response': 'Expected a GET request. Received a POST request.',
+        }
+        return JsonResponse(json_response)
 
-    context = {
-        'items': 'list of items',
-    }
-
-    return render(request, 'search_results.html', context)
+    # context = {
+    #     'items': 'list of items',
+    # }
+    #
+    # return render(request, 'search_results.html', context)
 
 @csrf_exempt
 def create_listing(request):
