@@ -6,12 +6,13 @@ models:
       - ./CioYardSale:/app
     ports:
       - "8001:8000"
-    command: bash -c "pip install Pillow && python manage.py loaddata db-users-and-items.json && mod_wsgi-express start-server --reload-on-changes --working-directory ./ ./CioYardSale/wsgi.py"
+    command: bash -c "pip install Pillow && pip install requests && python manage.py loaddata db-users-and-items.json && mod_wsgi-express start-server --reload-on-changes --working-directory ./ ./CioYardSale/wsgi.py"
 
 exp:
    image: tp33/django
    links:
       - models:models-api
+      - kafka:kafka
    volumes:
       - ./exp:/app
    ports:
@@ -26,7 +27,7 @@ web:
       - ./web:/app
    ports:
       - "8000:8000"
-   command: "mod_wsgi-express start-server --reload-on-changes ./web/wsgi.py"
+   command: bash -c "pip install requests && mod_wsgi-express start-server --reload-on-changes ./web/wsgi.py"
 
 kafka:
    image: spotify/kafka
@@ -35,7 +36,7 @@ kafka:
       ADVERTISED_HOST: kafka
       ADVERTISED_PORT: 9092
    hostname: kafka
-   
+
 es:
    image: elasticsearch:2.0
    container_name: es
@@ -45,7 +46,9 @@ es:
 batch:
    image: tp33/django
    container_name: batch
+   volumes:
+      - ./batch:/app
    links:
       - kafka:kafka
       - es:es
-   command: bash -c "python /CioYardSale/kafkaconsumer.py"
+   command: bash -c "python kafkaconsumer.py"

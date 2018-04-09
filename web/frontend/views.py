@@ -1,16 +1,16 @@
-from django.shortcuts import render
 from .forms import *
+from django.shortcuts import render
 from django.core.urlresolvers import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 from . import forms
 
+import json
 from django.http import JsonResponse, HttpResponseRedirect
 
+import requests
 import urllib.request
 import urllib.parse
-import json
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponseRedirect
 
 def index(request):
     req = urllib.request.Request('http://exp-api:8000/getCommodityList/')
@@ -41,15 +41,22 @@ def search(request):
     if request.method == 'GET':
         # 'query' is the name field in the search input in base.html
         data = request.GET.get('query')
+
+        # Send the query to the exp url and store info in resp
+        resp = requests.get('http://exp-api:8000/api/v1/search/', params={'query': data})
+
+        # Get the actual text of the resp
+        resp_json = resp.text
+
         json_response = {
             'status': 'success',
             'response': 'Search received a POST requst',
             'query_data': data,
+            'resp_json': resp_json
         }
         return JsonResponse(json_response, safe=False)
-        # url = 'http://exp-api:8000/api/v1/searchItems'
-        # resp = requests.get(url, params={'query': data})
-        # resp_json = resp.text
+
+
         # if json.loads(resp_json)['itemsExist']:
         #     items = json.loads(resp_json)['items']
         #     return render(request, 'searchResults.html', {'items': items})
