@@ -60,9 +60,7 @@ def search(request):
         if json.loads(resp_json)['response'] == 'Found items':
             items = json.loads(resp_json)['items']
             return render(request, 'search_results.html', {'items': items})
-        else:
-            items = 'No commodity matches your search.'
-            return render(request, 'search_results.html', {'items': items})
+
 
         #     return response
     else:

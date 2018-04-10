@@ -10,15 +10,27 @@
   <div class="col-md-8 mx-auto text-center mb-5">
     <div class="list-group list-group-flush">
       <a class="list-group-item" style="font-weight: bold;">
+
         <div class="row">
+          {% if items|length > 0 %}
           <div class="col-6">
             Item Title
           </div>
           <div class="col-6">
             Item Price
           </div>
+          {% endif %}
+
         </div>
       </a>
+
+      {% if items|length == 0 %}
+      <p></p>
+      <p> No commodity matched your search. </p>
+      {% endif %}
+
+
+
 
       {% for item in items %}
 
@@ -36,6 +48,6 @@
 
   </div>
 </div>
-   
+
 
 {% endblock content %}
