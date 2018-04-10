@@ -48,33 +48,18 @@ def search(request):
         # Get the actual text of the resp
         resp_json = resp.text
 
-        json_response = {
-            'status': 'success',
-            'response': 'Search received a POST requst',
-            'query_data': data,
-            'resp_json': resp_json
-        }
-        #return JsonResponse(json.loads(resp_json)['items'][0]['pk'], safe=False)
-
-
         if json.loads(resp_json)['response'] == 'Found items':
             items = json.loads(resp_json)['items']
             return render(request, 'search_results.html', {'items': items})
 
-
-        #     return response
+        else:
+            return render(request, 'search_results.html', {'items': None})
     else:
         json_response = {
             'status': 'error',
             'response': 'Expected a GET request. Received a POST request.',
         }
         return JsonResponse(json_response)
-
-    # context = {
-    #     'items': 'list of items',
-    # }
-    #
-    # return render(request, 'search_results.html', context)
 
 @csrf_exempt
 def create_listing(request):
