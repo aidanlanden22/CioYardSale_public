@@ -53,7 +53,6 @@ def search(request):
             return render(request, 'search_results.html', {'items': items})
         else:
             return render(request, 'search_results.html', {'items': None})
-
     else:
         json_response = {
             'status': 'error',
