@@ -106,7 +106,8 @@ def createCommodity(request):
 
 
         ## need to extrack pk value
-        data['TESTING BISH NOT SURE HOW TO GET PK'] = resp
+        #data['TESTING BISH NOT SURE HOW TO GET PK'] = resp['response']
+
         # Straight from Pinckney documentation
         producer.send('new-listings-topic', json.dumps(data).encode('utf-8'))
 

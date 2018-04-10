@@ -54,15 +54,16 @@ def search(request):
             'query_data': data,
             'resp_json': resp_json
         }
-        return JsonResponse(json_response, safe=False)
+        #return JsonResponse(json.loads(resp_json)['response'], safe=False)
 
 
-        # if json.loads(resp_json)['itemsExist']:
-        #     items = json.loads(resp_json)['items']
-        #     return render(request, 'searchResults.html', {'items': items})
-        # else:
-        #     messages.error(request, 'No items exist, create an item before searching.')
-        #     response = HttpResponseRedirect(reverse('home'))
+        if json.loads(resp_json)['response'] == 'Found items':
+            items = json.loads(resp_json)['items']
+            return render(request, 'search_results.html', {'items': items})
+        else:
+            items = 'No commodity matches your search.'
+            return render(request, 'search_results.html', {'items': items})
+
         #     return response
     else:
         json_response = {
