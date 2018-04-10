@@ -33,7 +33,7 @@
 
 
       {% for item in items %}
-
+      <a href="{% url 'view_item' item.pk %}" class="list-group-item list-group-item-action">
           <div class="row">
             <div class="col-6">
               {{ item.title }}

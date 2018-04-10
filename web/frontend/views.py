@@ -54,7 +54,7 @@ def search(request):
             'query_data': data,
             'resp_json': resp_json
         }
-        #return JsonResponse(json.loads(resp_json)['response'], safe=False)
+        #return JsonResponse(json.loads(resp_json)['items'][0]['pk'], safe=False)
 
 
         if json.loads(resp_json)['response'] == 'Found items':

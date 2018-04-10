@@ -50,7 +50,8 @@ def create(request):
                 title=request.POST.get('title'),
             )
             selling.save()
-            data = serializers.serialize("json", Commodity.objects.filter(id=selling.pk))
+            #data = serializers.serialize("json", Commodity.objects.filter(id=selling.pk))
+            data = selling.pk
             #data = serializers.serialize("json", [selling])
             json_response = {
                 'status': 'success',
