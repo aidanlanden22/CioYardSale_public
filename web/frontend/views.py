@@ -56,7 +56,6 @@ def search(request):
         }
         #return JsonResponse(json.loads(resp_json)['response'], safe=False)
 
-
         if json.loads(resp_json)['response'] == 'Found items':
             items = json.loads(resp_json)['items']
             return render(request, 'search_results.html', {'items': items})
