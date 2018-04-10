@@ -103,8 +103,6 @@ def createCommodity(request):
         resp_json = urllib.request.urlopen(req).read().decode('utf-8')
         resp = json.loads(resp_json)
 
-
-
         ## need to extrack pk value
         data['pk'] = resp['response']
 
