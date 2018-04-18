@@ -1,0 +1,44 @@
+[
+{
+    "model": "commodity.commodity",
+    "pk": 22,
+    "fields": {
+        "g_or_s": "G",
+        "title": "Tennis Lesson",
+        "picture": "commodity_pics/noimage.jpg",
+        "description": "A one hour lesson with the club tennis team captains.",
+        "quantity": 3,
+        "price": "50.00",
+        "date_posted": "2018-04-10T02:21:01.078Z",
+        "date_expires": "2018-07-18T21:01:49.928Z"
+    }
+},
+{
+    "model": "commodity.commodity",
+    "pk": 23,
+    "fields": {
+        "g_or_s": "G",
+        "title": "Kayak",
+        "picture": "commodity_pics/noimage.jpg",
+        "description": "Support the outdoors club!",
+        "quantity": 1,
+        "price": "150.00",
+        "date_posted": "2018-04-10T02:22:36.450Z",
+        "date_expires": "2012-09-04T14:00:00Z"
+    }
+},
+{
+    "model": "commodity.commodity",
+    "pk": 24,
+    "fields": {
+        "g_or_s": "G",
+        "title": "UVA shot glasses",
+        "picture": "commodity_pics/noimage.jpg",
+        "description": "Hand painted shot glasses. The proceeds will go to the UVA riding team.",
+        "quantity": 15,
+        "price": "3.00",
+        "date_posted": "2018-04-10T02:23:27.752Z",
+        "date_expires": "2012-09-04T14:00:00Z"
+    }
+},
+]
