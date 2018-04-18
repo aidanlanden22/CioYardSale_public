@@ -4,7 +4,6 @@ python:
   - "3.5"
 
 script:
-  - docker start mysql
   - docker-compose up
 
 services:
