@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/emmafass/CioYardSale.svg?token=U3FKwpr9HPvU3J7Stytp&branch=master)](https://travis-ci.com/emmafass/CioYardSale)
+
 ## Start Working on the Project
 
 docker start mysql
