@@ -14,6 +14,8 @@ before_install:
   - docker pull mysql:5.7.14
   - mkdir ~/cs4501
   - mkdir ~/cs4501/app
+  - docker run -it --name web -v ~/cs4501/app:/app tp33/django
+  - exit
   - mkdir ~/cs4501/db
   - docker run --name mysql -d -e MYSQL\_ROOT\_PASSWORD='$3cureUS' -v ~/cs4501/db:/var/lib/mysql mysql:5.7.14
   - sleep 20
