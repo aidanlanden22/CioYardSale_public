@@ -3,17 +3,17 @@ language: python
 python:
   - "3.5"
 
-script:
+before_script:
   - python manage.py makemigrations
   - python manage.py migrate
 
 script:
   - docker-compose up
 
+sudo: required
+
 services:
   - docker
-
-sudo: false
 
 before_install:
   - export DJANGO_SETTINGS_MODULE="CioYardSale.settings"
