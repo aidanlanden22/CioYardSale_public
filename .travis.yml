@@ -20,14 +20,6 @@ before_install:
   - sleep 20
   - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -uroot -p'$3cureUS' -h db -e "create user 'www'@'%' identified by '\$3cureUS'; CREATE DATABASE cs4501; grant all on test_cs4501.* to 'www'@'%'; grant all on cs4501.* to 'www'@'%';"
 
-before_script:
-  - docker start web
-  - docker attach web
-  - cd CioYardSale
-  - python manage.py makemigrations
-  - python manage.py migrate
-  - exit
-
 script:
   - docker-compose up -d
   - docker ps -a
