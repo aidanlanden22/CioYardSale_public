@@ -23,3 +23,5 @@ before_install:
 script:
   - docker-compose up -d
   - docker ps -a
+  - sleep 20
+  - docker exec -it CioYardSale_models_1 python manage.py test
