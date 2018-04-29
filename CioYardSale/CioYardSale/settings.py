@@ -77,15 +77,26 @@ WSGI_APPLICATION = 'CioYardSale.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-          'default': {
-          'ENGINE': 'django.db.backends.mysql',
-          'NAME': 'cs4501',
-          'USER': 'www',
-          'PASSWORD': '$3cureUS',
-          'HOST': 'db',
-          }
-}
+if os.getenv('BUILD_ON_TRAVIS', None):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'cs4501',
+            'USER': 'www',
+            'PASSWORD': '$3cureUS',
+            'HOST': '127.0.0.1',
+        }
+    }
+else:
+    DATABASES = {
+              'default': {
+              'ENGINE': 'django.db.backends.mysql',
+              'NAME': 'cs4501',
+              'USER': 'www',
+              'PASSWORD': '$3cureUS',
+              'HOST': 'db',
+              }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

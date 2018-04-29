@@ -28,3 +28,4 @@ before-script:
   
 script:
   - docker exec -it cioyardsale_models_1 bash -c "python ./manage.py test --no-input"
+
