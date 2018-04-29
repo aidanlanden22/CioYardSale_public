@@ -23,5 +23,4 @@ before_install:
 
 script:
   - docker-compose exec
-  - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "python manage.py test commodity"
