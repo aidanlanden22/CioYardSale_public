@@ -25,4 +25,4 @@ script:
   - docker ps -a
   - docker exec -it cioyardsale_models_1 sh -c "ls"
   - sleep 20
-  - docker exec -it cioyardsale_models_1 sh -c "django-admin test --noinput"
+  - docker exec -it cioyardsale_models_1 sh -c "django-admin test --noinput commodity"
