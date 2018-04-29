@@ -27,4 +27,4 @@ before-script:
   - sleep 20
 
 script:
-  - docker exec -it cioyardsale_models_1 bash -c "python ./manage.py test --no-input"
+  - docker exec -it cioyardsale_models_1 bash -c "python ./manage.py test --no-input commodity"
