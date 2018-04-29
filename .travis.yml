@@ -26,4 +26,4 @@ before_script:
 
 script:
   - sleep 20
-  - docker exec -it cioyardsale_models_1 sh -c "echo a"
+  - docker exec -it cioyardsale_models_1 sh -c "cwd"
