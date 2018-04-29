@@ -23,7 +23,7 @@ before_install:
 
 before-script:
   - docker start mysql
-  - docker-compose exec
+  - docker-compose up -d
   - sleep 20
 
 script:
