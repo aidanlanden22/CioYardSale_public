@@ -24,4 +24,5 @@ script:
   - docker-compose up -d
   - docker ps -a
   - docker exec -it cioyardsale_models_1 sh -c "ls"
+  - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "python manage.py test students"
