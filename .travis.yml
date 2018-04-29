@@ -21,6 +21,10 @@ before_install:
   - sleep 20
   - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -uroot -p'$3cureUS' -h db -e "create user 'www'@'%' identified by '\$3cureUS'; CREATE DATABASE cs4501; grant all on test_cs4501.* to 'www'@'%'; grant all on cs4501.* to 'www'@'%';"
 
-script:
+before-script:
+  - docker start mysql
   - docker-compose exec
-  - docker exec -it cioyardsale_models_1 sh -c "python manage.py test commodity"
+  - sleep 20
+  
+script:
+  - docker exec -it cioyardsale_models_1 bash -c "python ./manage.py test --no-input"
