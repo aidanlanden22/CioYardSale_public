@@ -20,8 +20,10 @@ before_install:
   - sleep 20
   - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -uroot -p'$3cureUS' -h db -e "create user 'www'@'%' identified by '\$3cureUS'; CREATE DATABASE cs4501; grant all on test_cs4501.* to 'www'@'%'; grant all on cs4501.* to 'www'@'%';"
 
-script:
+before_script:
   - docker-compose up -d
   - docker ps -a
+
+script:
   - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "echo a"
