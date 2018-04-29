@@ -24,4 +24,4 @@ script:
   - docker-compose up -d
   - docker ps -a
   - sleep 20
-  - docker exec -it cioyardsale_models_1 bash -c "python manage.py test"
+  - docker exec -d cioyardsale_models_1 "python manage.py test"
