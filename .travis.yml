@@ -25,5 +25,7 @@ before_script:
   - docker ps -a
 
 script:
+  - docker exec -it cioyardsale_models_1 sh -c "echo ls"
+  - docker exec -it cioyardsale_models_1 sh -c "python -V"
   - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "python manage.py test commodity"
