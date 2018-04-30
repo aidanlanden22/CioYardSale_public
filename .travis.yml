@@ -26,9 +26,9 @@ before_install:
 before_script:
   - docker start mysql
   - docker-compose up -d
+  - docker ps -a
 
 script:
-  - docker ps -a
   - docker exec -it cioyardsale_models_1 sh -c "ls"
   - docker exec -it cioyardsale_models_1 sh -c "pwd"
   - docker exec -it cioyardsale_models_1 sh -c "python -V"
