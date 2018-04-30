@@ -26,12 +26,12 @@ before_install:
 before_script:
   - docker start mysql
   - docker-compose up -d
-  - docker ps -a
 
 script:
   - docker exec -it cioyardsale_models_1 sh -c "ls"
   - docker exec -it cioyardsale_models_1 sh -c "pwd"
   - docker exec -it cioyardsale_models_1 sh -c "python -V"
+  - docker ps -a
   - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "python ./manage.py test commodity --no-input"
   
