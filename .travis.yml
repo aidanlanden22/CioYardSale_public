@@ -26,6 +26,8 @@ before_script:
 
 script:
   - docker exec -it cioyardsale_models_1 sh -c "echo ls"
+  - docker exec -it cioyardsale_models_1 sh -c "echo pwd"
+  - docker exec -it cioyardsale_models_1 sh -c "cd app/ && echo ls"
   - docker exec -it cioyardsale_models_1 sh -c "python -V"
   - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "python manage.py test commodity"
