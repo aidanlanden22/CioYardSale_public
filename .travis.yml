@@ -10,7 +10,7 @@ services:
 
 before_install:
   - export DJANGO_SETTINGS_MODULE="CioYardSale.settings"
-  - export PYTHONPATH="$HOME/builds/emmafass/app"
+  - export PYTHONPATH="$HOME/usr/local/python/bin/python3.5"
   - docker pull tp33/django
   - docker pull mysql:5.7.14
   - mkdir ~/cs4501
