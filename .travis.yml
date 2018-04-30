@@ -7,9 +7,6 @@ python:
 
 services:
   - docker
- 
-env:
-  DOCKER_COMPOSE_VERSION: 1.8.0
 
 before_install:
   - export DJANGO_SETTINGS_MODULE="CioYardSale.settings"
