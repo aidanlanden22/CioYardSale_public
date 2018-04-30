@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 
 language: python
 
@@ -31,6 +31,6 @@ script:
   - docker ps -a
   - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "python ./manage.py test --no-input"
-  
+
 after_script:
   - docker-compose down
