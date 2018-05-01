@@ -21,10 +21,10 @@ before_install:
   - docker run --name mysql -d -e MYSQL\_ROOT\_PASSWORD='$3cureUS' -v ~/cs4501/db:/var/lib/mysql mysql:5.7.14
   - sleep 20
   - sleep 20
-  - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -uroot -p '$3cureUS' -h db -e " create user 'www'@'%' identified by '\$3cureUS'; "
-  - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -uroot -p '$3cureUS' -h db -e " CREATE DATABASE cs4501 character set utf8; "
-  - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -uroot -p '$3cureUS' -h db -e " grant all on test_cs4501.* to 'www'@'%'; "
-  - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -uroot -p '$3cureUS' -h db -e " grant all on cs4501.* to 'www'@'%'; "
+  - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -u root -p '$3cureUS' -h db -e " create user 'www'@'%' identified by '\$3cureUS'; "
+  - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -u root -p '$3cureUS' -h db -e " CREATE DATABASE cs4501 character set utf8; "
+  - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -u root -p '$3cureUS' -h db -e " grant all on test_cs4501.* to 'www'@'%'; "
+  - docker run -it --name mysql-cmdline --link mysql:db mysql:5.7.14 mysql -u root -p '$3cureUS' -h db -e " grant all on cs4501.* to 'www'@'%'; "
 
 before_script:
   - docker start mysql
