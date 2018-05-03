@@ -27,7 +27,7 @@ web:
    volumes:
       - ./web:/app
    ports:
-      - "8000:8000"
+      - "8003:8000"
    command: bash -c "pip install requests && mod_wsgi-express start-server --reload-on-changes ./web/wsgi.py"
 
 kafka:
@@ -58,10 +58,10 @@ web2:
    image: tp33/django
    links:
       - exp:exp-api
-   ports:
-      - "8003:8000"
    volumes:
       - ./web:/app
+   ports:
+      - "8004:8000"
    command: bash -c "pip install requests && mod_wsgi-express start-server --reload-on-changes /app/web/wsgi.py"
 
 haproxy:
