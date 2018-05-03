@@ -29,7 +29,6 @@ script:
   - docker exec -it cioyardsale_models_1 sh -c "pwd"
   - docker exec -it cioyardsale_models_1 sh -c "python -V"
   - docker ps -a
-  - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "python ./manage.py test --no-input"
 
 after_script:
