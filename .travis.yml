@@ -29,6 +29,7 @@ before_script:
   - docker-compose up -d
 
 script:
+  - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "ls"
   - docker exec -it cioyardsale_models_1 sh -c "pwd"
   - docker exec -it cioyardsale_models_1 sh -c "python -V"
