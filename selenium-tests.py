@@ -1,6 +1,18 @@
+import unittest
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-driver = webdriver.Remote(
-   command_executor='http://127.0.0.1:4444/wd/hub',
-   desired_capabilities=DesiredCapabilities.CHROME)
+class PythonTest(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+
+    def test_search_in_python_org(self):
+        driver = self.driver
+        driver.get("http://127.0.0.1:4444/")
+        self.assertIn("CIO Yard Sale", driver.title)
+
+    def tearDown(self):
+        self.driver.close()
+
+if __name__ == "__main__":
+    unittest.main()
