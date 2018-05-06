@@ -29,13 +29,11 @@ before_script:
   - docker-compose up -d
 
 script:
-  - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "ls"
   - docker exec -it cioyardsale_models_1 sh -c "pwd"
   - docker exec -it cioyardsale_models_1 sh -c "python -V"
   - docker ps -a
-  - docker exec -it cioyardsale_models_1 sh -c "python manage.py migrate auth"
-  - docker exec -it cioyardsale_models_1 sh -c "python manage.py migrate"
+  - sleep 20
   - docker exec -it cioyardsale_models_1 sh -c "python manage.py test"
 
 after_script:
