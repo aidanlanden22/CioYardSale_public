@@ -13,6 +13,6 @@ while consumer == None:
 
 for message in consumer:
     json_obj = json.loads((message.value).decode('utf-8'))
-    with open("/data/data.txt") as output:
+    with open("/app2/data.txt", "a") as output:
         output.write(json_obj['username'] + '\t' + json_obj['item'] + '\n')
         output.close()

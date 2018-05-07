@@ -15,11 +15,11 @@ cursor = db.cursor()
 
 while True:
 
-	cursor.exexcute('delete from commodity_recommendation')
+	cursor.execute('delete from commodity_recommendation')
 
 	sc = SparkContext("spark://spark-master:7077", "PopularItems")
 
-	data = sc.textFile("/tmp/data/recommendations.txt", 2) 
+	data = sc.textFile("/tmp/data/data.txt", 2)
 
 	pairs = data.map(lambda line: line.split("\t"))
 	pairs2 = pairs.groupByKey().mapValues(list)
@@ -35,7 +35,7 @@ while True:
 	for page_id, count in output:
 		if count >= 3:
 			try:
-				if str(page_id[1]) not in recs_dict[page_id[0]] and str(page_id[0]) != str(page_id[1]): 
+				if str(page_id[1]) not in recs_dict[page_id[0]] and str(page_id[0]) != str(page_id[1]):
 					recs_dict[page[0]] += ' '+str(page[1])
 			except KeyError as e:
 				recs_dict[page[0]] = str(page[1])
@@ -45,11 +45,11 @@ while True:
 			except KeyError as e:
 				recs_dict[page_id[1]] = str(page_id[0])
 
-
 	to_write = ''
+
 	for key, value in recs_dict.items():
 		value_encoded = value.encode('UTF-8')
-		query = 'INSERT INTO commodity_recommendation (item_id, recommended_items) VALUES (%d, \'%s\');' % (int(key), value_encoded)
+		query = 'INSERT into commodity_recommendation (item_id, recommended_items) VALUES (%d, \'%s\'); ' % (int(key), value_encoded)
 		cursor.execute(query)
 		to_write += (key + '\t' + value_encoded + '\n')
 
@@ -61,5 +61,3 @@ while True:
 
 	sc.stop()
 	time.sleep(120)
-
-

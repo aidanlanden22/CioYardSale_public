@@ -59,7 +59,7 @@ batch_recommendation:
    container_name: batch_recommendation
    volumes:
       - ./batch_recommendation:/app
-      - ./data:/data
+      - ./data:/app2
    links:
       - kafka:kafka
       - es:es
@@ -106,6 +106,8 @@ selenium-test:
 
 spark-master:
   image: gettyimages/spark
+  external_links:
+    - mysql:db
   command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
   container_name: spark-master
   hostname: spark-master
@@ -131,6 +133,8 @@ spark-master:
 
 spark-worker:
   image: gettyimages/spark
+  external_links:
+    - mysql:db
   command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
   container_name: spark-worker
   hostname: spark-worker
