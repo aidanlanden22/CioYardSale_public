@@ -25,17 +25,22 @@ def index(request):
     return render(request, 'index.html', context)
 
 def view_item(request, pk):
-    context = {'pk' : pk}
-    req = urllib.request.Request('http://exp-api:8000/getSingleCommodity/' + pk + '/')
+    # Want to get the user if user is authenticated
+    auth = request.COOKIES.get('auth')
+
+    # Want to pass the auth token with the request so we know which user looked at what item
+    url = 'http://exp-api:8000/getSingleCommodity/' + pk + '/'
+    req = urllib.request.Request(url, params={'auth': auth})
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
 
     context = {
         'pk' : pk,
         'item': resp[0],
+        'auth' : auth,
     }
 
-    return render(request, 'item.html',context)
+    return render(request, 'item.html', context)
 
 def search(request):
     if request.method == 'GET':

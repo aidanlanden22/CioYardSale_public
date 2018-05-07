@@ -54,6 +54,17 @@ batch:
       - es:es
    command: bash -c "python kafkaconsumer.py"
 
+batch_recommendation:
+   image: tp33/django
+   container_name: batch_recommendation
+   volumes:
+      - ./batch_recommendation:/app
+      - ./data:/data
+   links:
+      - kafka:kafka
+      - es:es
+   command: bash -c "python kafka_recommendations.py"
+
 web2:
    image: tp33/django
    links:

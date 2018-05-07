@@ -67,9 +67,27 @@ def getCommodityList(request):
     return JsonResponse(resp, safe=False)
 
 def getSingleCommodity(request,pk):
+    # Try to get the auth token from the request we sent in the web layer
+    auth = request.GET.get('auth')
+
+    # Use the auth token to get the username of the user
+    req_the_auth = urllib.request.Request('http://models-api:8000/api/v1/auth/getUsername/' + "?auth=" + auth)
+    resp_json_auth = urllib.request.urlopen(req_the_auth).read().decode('utf-8')
+    resp_auth = json.loads(resp_json_auth)
+
     req = urllib.request.Request('http://models-api:8000/api/v1/commodity/' + pk + '/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
+
+    # Make a pair that includes the user and the item the user viewed
+    if (resp_auth['status'] is 'success'):
+            my_pair = {
+                'username' = resp_auth[username],
+                'item' = str(pk)
+            }
+            print(my_pair)
+            # Send the pair to kafka
+            producer.send('my_recommendation', json.dumps(my_pair).encode('utf-8'))
 
     return JsonResponse(resp, safe=False)
 
