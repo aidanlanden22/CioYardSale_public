@@ -208,7 +208,7 @@ def get_username(request):
 				'status': 'error',
 				'response': 'Auth does not exist',
 			}
-			return JsonResponse(json_response)
+			return JsonResponse(json_response, safe=False)
 
 		# Grab the username
 		username = auth.myUser.username
@@ -217,8 +217,7 @@ def get_username(request):
 		# Send back a success response
 		json_response = {
 			'status': 'success',
-			'auth': auth,
-			'username': username
+			'username': username,
 		}
 		return JsonResponse(json_response, safe=False)
 	else:
@@ -226,4 +225,4 @@ def get_username(request):
 			'status': 'error',
 			'response': 'Expected a GET request. Got a POST request.',
 		}
-		return JsonResponse(json_response)
+		return JsonResponse(json_response, safe=False)

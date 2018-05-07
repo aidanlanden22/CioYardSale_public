@@ -30,8 +30,8 @@ def view_item(request, pk):
 
     # Want to pass the auth token with the request so we know which user looked at what item
     url = 'http://exp-api:8000/getSingleCommodity/' + pk + '/'
-    req = urllib.request.Request(url, params={'auth': auth})
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
+    req = requests.get(url, params={'auth': auth})
+    resp_json = req.text
     resp = json.loads(resp_json)
 
     context = {
