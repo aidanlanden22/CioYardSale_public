@@ -52,3 +52,8 @@ class Commodity(models.Model):
     )
 
     date_expires = models.DateTimeField(default=timezone.now, blank=True)
+
+
+class Recommendation(models.Model):
+    item_id = models.IntegerField(default=1)
+    recommended_items = models.TextField(default='')

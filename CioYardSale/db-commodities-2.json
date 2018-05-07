@@ -1,0 +1,142 @@
+[
+    {
+        "model": "commodity.commodity",
+        "pk": 1,
+        "fields": {
+            "g_or_s": "G",
+            "title": "UVA Riding T-Shirts",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "40th anniversary t-shirts we are selling to raise money for Nationals. ",
+            "quantity": 10,
+            "price": "20.00",
+            "date_posted": "2018-03-27T00:11:51.682Z",
+            "date_expires": "2018-06-01T20:00:00.928Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 2,
+        "fields": {
+            "g_or_s": "S",
+            "title": "Horse Back Riding Lesson",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "One riding lesson. All proceeds go to CART, Charlottesville Area Riding Therapy",
+            "quantity": 1,
+            "price": "100.00",
+            "date_posted": "2018-03-27T00:13:04.670Z",
+            "date_expires": "2018-06-01T20:00:00.928Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 3,
+        "fields": {
+            "g_or_s": "G",
+            "title": "Pizza",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "Slices of pizza and all profits go to sending a team to Nationals.",
+            "quantity": 100,
+            "price": "1.00",
+            "date_posted": "2018-03-27T00:19:44.444Z",
+            "date_expires": "2018-06-01T20:00:00.928Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 4,
+        "fields": {
+            "g_or_s": "G",
+            "title": "Llama Coats",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "Llama fur coats straight from Patagonia",
+            "quantity": 10,
+            "price": "250.00",
+            "date_posted": "2018-03-27T00:20:41.179Z",
+            "date_expires": "2018-06-01T20:00:00.928Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 5,
+        "fields": {
+            "g_or_s": "G",
+            "title": "Harry Potter 1",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "This bundle comes with the first Harry Potter movie and book. Included is a bottle of butter beer and a box of pumpkin pasties.",
+            "quantity": 83,
+            "price": "14.37",
+            "date_posted": "2018-05-07T18:20:12.568Z",
+            "date_expires": "2012-09-04T14:00:00Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 6,
+        "fields": {
+            "g_or_s": "S",
+            "title": "Harry Potter Movie Exerpience",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "This deluxe package allows you and your friends to enjoy a day of binge watching Harry Potter movies in the Newcomb theater. Included are Harry Potter themed movie snacks and 4 cuddly Harry Potter blankets to keep you warm as you snuggle up and get your HP on!",
+            "quantity": 3,
+            "price": "125.00",
+            "date_posted": "2018-05-07T18:21:56.518Z",
+            "date_expires": "2012-09-04T14:00:00Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 7,
+        "fields": {
+            "g_or_s": "S",
+            "title": "Harry Potter Cosutme Package",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "This package includes a full wizarding wardrobe. Including a cloak, replica of Harry's wand, round wire frame glasses, lightening bolt tattoo and a stuffed Hedwig!",
+            "quantity": 60,
+            "price": "45.68",
+            "date_posted": "2018-05-07T18:23:40.420Z",
+            "date_expires": "2012-09-04T14:00:00Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 8,
+        "fields": {
+            "g_or_s": "G",
+            "title": "Harry Potter complete book set",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "Buy the complete Harry Potter series. Less than $10 per book",
+            "quantity": 200,
+            "price": "65.00",
+            "date_posted": "2018-05-07T18:24:30.746Z",
+            "date_expires": "2012-09-04T14:00:00Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 9,
+        "fields": {
+            "g_or_s": "G",
+            "title": "UVA Riding Mug",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "Support the UVA Riding team and buy our limited edition mug.",
+            "quantity": 210,
+            "price": "7.94",
+            "date_posted": "2018-05-07T18:25:11.811Z",
+            "date_expires": "2012-09-04T14:00:00Z"
+        }
+    },
+    {
+        "model": "commodity.commodity",
+        "pk": 10,
+        "fields": {
+            "g_or_s": "S",
+            "title": "Pizza Party",
+            "picture": "commodity_pics/noimage.jpg",
+            "description": "Celerbate the end of the school year with a pizza party for your friends. This deal provides pizza and soda for about 70 people. There is the option of hosting this in one of the UVA gardens or at the private residence of your choice.",
+            "quantity": 20,
+            "price": "110.00",
+            "date_posted": "2018-05-07T18:26:29.498Z",
+            "date_expires": "2012-09-04T14:00:00Z"
+        }
+    }
+]
