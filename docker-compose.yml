@@ -93,7 +93,7 @@ selenium-test:
     - ./app/selenium:/app
   command: bash -c "pip install selenium==3.11.0 && python selenium-tests.py"
 
-  spark-master:
+spark-master:
   image: gettyimages/spark
   command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
   container_name: spark-master
