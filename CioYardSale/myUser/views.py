@@ -201,7 +201,8 @@ def get_username(request):
 	if request.method == 'GET':
 		# Try to grab auth token from the request - was sent in url
 		try:
-			auth = Authenticator.objects.get(authenticator=request.GET.get('auth'))
+			auth_token = request.GET.get('auth')
+			auth = Authenticater.objects.get(authenticator=auth_token)
 		except ObjectDoesNotExist:
 			json_response = {
 				'status': 'error',
@@ -210,7 +211,8 @@ def get_username(request):
 			return JsonResponse(json_response)
 
 		# Grab the username
-		username = auth.user.username
+		username = auth.myUser.username
+		print("    TEST:    " + username)
 
 		# Send back a success response
 		json_response = {

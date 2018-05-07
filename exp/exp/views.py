@@ -71,7 +71,7 @@ def getSingleCommodity(request,pk):
     auth = request.GET.get('auth')
 
     # Use the auth token to get the username of the user
-    req_the_auth = urllib.request.Request('http://models-api:8000/api/v1/auth/getUsername/' + "?auth=" + auth)
+    req_the_auth = urllib.request.Request('http://models-api:8000/api/v1/users/getUsername/', params={'auth': auth} )
     resp_json_auth = urllib.request.urlopen(req_the_auth).read().decode('utf-8')
     resp_auth = json.loads(resp_json_auth)
 
@@ -99,7 +99,7 @@ def signupUser(request):
             'password':request.POST.get('password'),
         }
         encode_data = urllib.parse.urlencode(data).encode('utf-8')
-        req = urllib.request.Request('http://models-api:8000/api/v1/users/create_user/', data=encode_data, method='POST')
+        req = urllib.request.Request('http://models-api:8000/api/v1/users/getUsername/', data=encode_data, method='POST')
         resp_json = urllib.request.urlopen(req).read().decode('utf-8')
         resp = json.loads(resp_json)
 
