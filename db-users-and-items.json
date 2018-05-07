@@ -56,6 +56,20 @@
     }
 },
 {
+    "model": "commodity.commodity",
+    "pk": 5,
+    "fields": {
+        "g_or_s": "G",
+        "title": "Harry Potter 1",
+        "picture": "commodity_pics/noimage.jpg",
+        "description": "HP fan club",
+        "quantity": 10,
+        "price": "250.00",
+        "date_posted": "2018-03-27T00:20:41.179Z",
+        "date_expires": "2018-06-01T20:00:00.928Z"
+    }
+},
+{
     "model": "myUser.myuser",
     "pk": 1,
     "fields": {
