@@ -52,7 +52,7 @@ def view_item(request, pk):
         rec_req = requests.get(url, params={'auth': ''})
         rec_resp_json = rec_req.text
         rec_resp = json.loads(rec_resp_json)
-        rec_resp_lst.append(rec_resp)
+        rec_resp_lst.append(rec_resp[0][0])
 
 
     context = {
