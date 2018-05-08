@@ -43,17 +43,16 @@ while True:
 
 	recs_dict = {}
 	for pairs, count in output:
-		if count >= 3:
-			try:
-				if str(pairs[1]) not in recs_dict[pairs[0]] and str(pairs[0]) != str(pairs[1]):
-					recs_dict[pairs[0]] += ' '+str(pairs[1])
-			except KeyError as e:
-				recs_dict[pairs[0]] = str(pairs[1])
-			try:
-				if str(pairs[0]) not in recs_dict[pairs[1]] and str(pairs[0]) != str(pairs[1]):
-					recs_dict[pairs[1]] += ' '+str(pairs[0])
-			except KeyError as e:
-				recs_dict[pairs[1]] = str(pairs[0])
+		try:
+			if str(pairs[1]) not in recs_dict[pairs[0]] and str(pairs[0]) != str(pairs[1]):
+				recs_dict[pairs[0]] += ' '+str(pairs[1])
+		except KeyError as e:
+			recs_dict[pairs[0]] = str(pairs[1])
+		try:
+			if str(pairs[0]) not in recs_dict[pairs[1]] and str(pairs[0]) != str(pairs[1]):
+				recs_dict[pairs[1]] += ' '+str(pairs[0])
+		except KeyError as e:
+			recs_dict[pairs[1]] = str(pairs[0])
 
 	for key, value in recs_dict.items():
 	    print ("key: %d      value: %s" % (int(key), value))
