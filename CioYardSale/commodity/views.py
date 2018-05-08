@@ -135,11 +135,9 @@ def delete(request, pk):
 @csrf_exempt
 def getRecs(request, pk):
     data = {}
-    data = serializers.serialize("json", Recommendation.objects.all())
-    return HttpResponse(data, content_type='application/json')
     if request.method == 'POST':
         status = {'status': 'unsucessful request'}
         data = json.dumps(status)
     elif request.method == 'GET':
-        data = serializers.serialize("json", Recommendation.objects.filter(id=pk))
+        data = serializers.serialize("json", Recommendation.objects.filter(item_id=pk))
         return HttpResponse(data, content_type='application/json')

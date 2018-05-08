@@ -34,6 +34,9 @@ def view_item(request, pk):
     resp_json = req.text
     resp = json.loads(resp_json)
 
+    url_rec = 'http://exp-api:8000/getSingleCommodity/' + pk + '/'
+
+
     context = {
         'pk' : pk,
         'item': resp[0],
