@@ -36,11 +36,12 @@
 
 <p>Recommendations:</p>
     {% for rec in recs %}
-      <div class="row">
-        <div class="col-md-4 mx-auto text-center">
-      		<p>{{ rec.fields.title }}</p>
-        </div>
-      </div>
+<div class="row">
+  <div class="col-md-4 mx-auto text-center">
+		<a href="{% url 'view_item' item.fields.pk %}" class="list-group-item list-group-item-action">
+            <p>{{ rec.fields.title }}</p> </a>
+  </div>
+    </div>
     {% endfor %}
 
 
