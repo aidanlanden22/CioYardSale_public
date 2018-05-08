@@ -39,7 +39,10 @@ def view_item(request, pk):
     rec_resp_json = rec_req.text
     rec_resp = json.loads(rec_resp_json)
 
-    lst_recs = rec_resp[0]
+    try:
+        lst_recs = rec_resp[0]
+    except:
+        lst_recs = []
     rec_resp_lst = []
     i = 0
 
