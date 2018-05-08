@@ -39,9 +39,16 @@ def view_item(request, pk):
     rec_resp_json = rec_req.text
     rec_resp = json.loads(rec_resp_json)
 
-    lst_recs = rec_resp[0]["fields"][1].split(" ")
+    lst_recs = rec_resp[0]
     rec_resp_lst = []
     i = 0
+
+    context = {
+        'pk' : pk,
+        'item': resp[0],
+        'auth' : auth,
+        'recs' : lst_recs,
+    }
 
     for rec in lst_recs:
         rec_pk = int(rec)
@@ -52,7 +59,7 @@ def view_item(request, pk):
         rec_resp_lst[i] = rec_resp
         i+=1
 
-    context = {
+    context_2 = {
         'pk' : pk,
         'item': resp[0],
         'auth' : auth,
