@@ -11,3 +11,5 @@
 7. As a user, I want to be able to login with and only with my correct username and password
 8. As a user, I want to be able to search the items for sale and see all the results with the word I searched.
 9. As a user, If I search for an item that doesn't exist, I want for the search page to tell me that no listings have been found.  
+10. As a user, I want to know what items people typically viewed concurrently to help me find similar items for sale.
+11. As a user, I want to easily view and then click on related items.
