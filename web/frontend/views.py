@@ -49,7 +49,7 @@ def view_item(request, pk):
 
     for rec in lst_recs:
         rec_pk = int(rec)
-        rec_url = 'http://exp-api:8000/getSingleCommodity/' + rec_pk + '/'
+        rec_url = 'http://exp-api:8000/getSingleCommodity/' + str(rec_pk) + '/'
         rec_req = requests.get(url, params={'auth': ''})
         rec_resp_json = rec_req.text
         rec_resp = json.loads(rec_resp_json)
