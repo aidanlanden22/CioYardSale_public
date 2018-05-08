@@ -40,7 +40,7 @@ def view_item(request, pk):
     rec_resp = json.loads(rec_resp_json)
 
     try:
-        lst_recs = dict(rec_resp[0])['feilds']['recommended_items']
+        lst_recs = dict(rec_resp[0])['fields']['recommended_items']
     except:
         lst_recs = []
     rec_resp_lst = []
