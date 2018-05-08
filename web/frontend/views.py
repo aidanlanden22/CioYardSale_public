@@ -46,13 +46,14 @@ def view_item(request, pk):
         lst_recs = []
     rec_resp_lst = []
 
-    for rec in lst_recs:
-        rec_pk = int(rec)
-        rec_url = 'http://exp-api:8000/getSingleCommodity/' + str(rec_pk) + '/'
-        rec_req = requests.get(url, params={'auth': ''})
-        rec_resp_json = rec_req.text
-        rec_resp = json.loads(rec_resp_json)
-        rec_resp_lst.append(rec_resp[0])
+    if len(lst_recs) > 0:
+        for rec in lst_recs:
+            rec_pk = int(rec)
+            rec_url = 'http://exp-api:8000/getSingleCommodity/' + str(rec_pk) + '/'
+            rec_req = requests.get(rec_url, params={'auth': ''})
+            rec_resp_json = rec_req.text
+            rec_resp = json.loads(rec_resp_json)
+            rec_resp_lst.append(rec_resp[0])
 
 
     context = {

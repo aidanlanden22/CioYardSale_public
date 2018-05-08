@@ -5,16 +5,6 @@
 <div class="row">
   <div class="col-md-12 mx-auto">
     <div class="text-center mt-5 mb-2">
-      <h3>Test auth: </h3>
-      <p> {{auth}} </p>
-	  <br>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12 mx-auto">
-    <div class="text-center mt-5 mb-2">
       <h3>Item for sale: {{ item.fields.title }}</h3>
 	  <br>
     </div>
@@ -34,15 +24,20 @@
 
 </div>
 
-<p>Recommendations:</p>
-    {% for rec in recs %}
 <div class="row">
-  <div class="col-md-4 mx-auto text-center">
-		<a href="{% url 'view_item' item.fields.pk %}" class="list-group-item list-group-item-action">
-            <p>{{ rec.fields.title }}</p> </a>
-  </div>
-    </div>
+  <div class="col-md-4 mx-auto my-5 text-center">
+    <h3>Recommendations:</h3>
+    {% for rec in recs %}
+      <div class="row">
+        <div class="col-md-12 mx-auto text-center">
+          <a href="{% url 'view_item' rec.pk %}" class="list-group-item list-group-item-action">
+            <p>{{ rec.fields.title }}</p>
+          </a>
+        </div>
+      </div>
     {% endfor %}
+  </div>
+</div>
 
 
 
