@@ -21,29 +21,43 @@ while True:
 
 	data = sc.textFile("/tmp/data/data.txt", 2)
 
-	pairs = data.map(lambda line: line.split("\t"))
-	pairs2 = pairs.groupByKey().mapValues(list)
-	pairs3 = pairs2.flatMap(lambda pair: create_pairs(pair[0], pair[1]))
-	pairs3 = pairs3.distinct()
-	pairs4 = pairs3.map(lambda pair: (pair[1], pair[0]))
-	pairs4 = pairs4.groupByKey().mapValues(list)
-	pairs5 = pairs4.map(lambda pair: (pair[0], len(pair[1])))
-	pairs6 = pairs5.filter(lambda pair: pair[1] > 2)
-	output = pairs6.collect()
+	pairs = data.map(lambda line: line.split("\t"))   			# tell each worker to split each line of it's partition
+
+	users_and_items = pairs.groupByKey().mapValues(list)
+
+	users_and_pairs_of_items = users_and_items.flatMap(lambda pair: create_pairs(pair[0], pair[1]))
+
+	pairs_of_items_and_users = users_and_pairs_of_items.distinct().map(lambda pair: (pair[1], pair[0]))
+
+	pairs_of_items_and_counts = pairs_of_items_and_users.groupByKey().mapValues(list)
+
+	items_and_counts = pairs_of_items_and_counts.map(lambda pair: (pair[0], len(pair[1])))
+
+	items_and_counts_above_3 = items_and_counts.filter(lambda pair: pair[1] > 2)
+
+	output = items_and_counts_above_3.collect()                          			# bring the data back to the master node so we can print it out
+
+	for page_id, count in output:
+	    print ("pair: %s      count %d" % (page_id, int(count)))
+	print ("Popular items done")
 
 	recs_dict = {}
-	for page_id, count in output:
+	for pairs, count in output:
 		if count >= 3:
 			try:
-				if str(page_id[1]) not in recs_dict[page_id[0]] and str(page_id[0]) != str(page_id[1]):
-					recs_dict[page[0]] += ' '+str(page[1])
+				if str(pairs[1]) not in recs_dict[pairs[0]] and str(pairs[0]) != str(pairs[1]):
+					recs_dict[pairs[0]] += ' '+str(pairs[1])
 			except KeyError as e:
-				recs_dict[page[0]] = str(page[1])
+				recs_dict[pairs[0]] = str(pairs[1])
 			try:
-				if str(page_id[0]) not in recs_dict[page_id[1]] and str(page_id[0]) != str(page_id[1]):
-					recs_dict[page_id[1]] += ' '+str(page_id[0])
+				if str(pairs[0]) not in recs_dict[pairs[1]] and str(pairs[0]) != str(pairs[1]):
+					recs_dict[pairs[1]] += ' '+str(pairs[0])
 			except KeyError as e:
-				recs_dict[page_id[1]] = str(page_id[0])
+				recs_dict[pairs[1]] = str(pairs[0])
+
+	for key, value in recs_dict.items():
+	    print ("key: %d      value: %s" % (int(key), value))
+	print ("dict items done")
 
 	to_write = ''
 
