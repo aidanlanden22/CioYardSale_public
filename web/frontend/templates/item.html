@@ -34,7 +34,14 @@
 
 </div>
 
-Testing : {{ recs }}
+<p>Recommendations:</p>
+    {% for rec in recs %}
+<div class="row">
+  <div class="col-md-4 mx-auto text-center">
+		<p>{{ rec.fields.title }}</p>
+  </div>
+    {% endfor %}
+
 
 
 {% endblock content %}
