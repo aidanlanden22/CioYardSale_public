@@ -41,16 +41,26 @@ def view_item(request, pk):
 
     try:
         lst_recs = dict(rec_resp[0])['fields']['recommended_items']
+        lst_recs = lst_recs.split("")
     except:
         lst_recs = []
     rec_resp_lst = []
     i = 0
 
+    for rec in lst_recs:
+        rec_pk = int(rec)
+        rec_url = 'http://exp-api:8000/getSingleCommodity/' + rec_pk + '/'
+        rec_req = requests.get(url, params={'auth': ''})
+        rec_resp_json = rec_req.text
+        rec_resp = json.loads(rec_resp_json)
+        rec_resp_lst[i] = rec_resp
+        i+=1
+
     context = {
         'pk' : pk,
         'item': resp[0],
         'auth' : auth,
-        'recs' : lst_recs,
+        'recs' : rec_resp_lst,
     }
 
 
