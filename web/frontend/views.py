@@ -45,7 +45,6 @@ def view_item(request, pk):
     except:
         lst_recs = []
     rec_resp_lst = []
-    i = 0
 
     for rec in lst_recs:
         rec_pk = int(rec)
@@ -53,8 +52,8 @@ def view_item(request, pk):
         rec_req = requests.get(url, params={'auth': ''})
         rec_resp_json = rec_req.text
         rec_resp = json.loads(rec_resp_json)
-        rec_resp_lst[i] = rec_resp
-        i+=1
+        rec_resp_lst.append(rec_resp)
+
 
     context = {
         'pk' : pk,
