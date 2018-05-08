@@ -34,13 +34,29 @@ def view_item(request, pk):
     resp_json = req.text
     resp = json.loads(resp_json)
 
-    url_rec = 'http://exp-api:8000/getSingleCommodity/' + pk + '/'
+    url_rec = 'http://exp-api:8000/getRecommendations/' + pk + '/'
+    rec_req = requests.get(url_rec)
+    rec_resp_json = rec_req.text
+    rec_resp = json.loads(rec_resp_json)
 
+    lst_recs = rec_resp[0]["fields"][1].split(" ")
+    rec_resp_lst = []
+    i = 0
+
+    for rec in lst_recs:
+        rec_pk = int(rec)
+        rec_url = 'http://exp-api:8000/getSingleCommodity/' + rec_pk + '/'
+        rec_req = requests.get(url, params={'auth': ''})
+        rec_resp_json = rec_req.text
+        rec_resp = json.loads(rec_resp_json)
+        rec_resp_lst[i] = rec_resp
+        i+=1
 
     context = {
         'pk' : pk,
         'item': resp[0],
         'auth' : auth,
+        'recs' : rec_resp_lst,
     }
 
     return render(request, 'item.html', context)

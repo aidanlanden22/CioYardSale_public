@@ -30,6 +30,19 @@
 		<p>Price: ${{ item.fields.price }}</p>
 
   </div>
+<p>Recommendations:</p>
+    {% for rec in recs %}
+<div class="row">
+  <div class="col-md-4 mx-auto text-center">
+		<p>{{ rec.fields.picture }}</p>
+
+		<p>Description: {{ rec.fields.description }}</p>
+		<p>Quantity: {{ rec.fields.quantity }}</p>
+		<p>Price: ${{ rec.fields.price }}</p>
+
+  </div>
+    {% endfor %}
+
 </div>
 
 
