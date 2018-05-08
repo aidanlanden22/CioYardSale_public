@@ -41,7 +41,7 @@ def view_item(request, pk):
 
     try:
         lst_recs = dict(rec_resp[0])['fields']['recommended_items']
-        lst_recs = lst_recs.split("")
+        lst_recs = str(lst_recs).split(" ")
     except:
         lst_recs = []
     rec_resp_lst = []
