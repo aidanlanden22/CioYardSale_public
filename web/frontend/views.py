@@ -40,7 +40,7 @@ def view_item(request, pk):
     rec_resp = json.loads(rec_resp_json)
 
     try:
-        lst_recs = len(rec_resp)
+        lst_recs = rec_resp[0]
     except:
         lst_recs = []
     rec_resp_lst = []
