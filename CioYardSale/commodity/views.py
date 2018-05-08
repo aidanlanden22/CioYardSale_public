@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Commodity
+from .models import Commodity, Recommendation
 
 from django.core import serializers
 import json
@@ -131,3 +131,15 @@ def delete(request, pk):
         data = json.dumps(status)
 
     return HttpResponse(data, content_type='application/json')
+
+@csrf_exempt
+def getRecs(request, pk):
+    data = {}
+    data = serializers.serialize("json", Recommendation.objects.all())
+    return HttpResponse(data, content_type='application/json')
+    if request.method == 'POST':
+        status = {'status': 'unsucessful request'}
+        data = json.dumps(status)
+    elif request.method == 'GET':
+        data = serializers.serialize("json", Recommendation.objects.filter(id=pk))
+        return HttpResponse(data, content_type='application/json')
