@@ -50,21 +50,7 @@ def view_item(request, pk):
         'recs' : lst_recs,
     }
 
-    for rec in lst_recs:
-        rec_pk = int(rec)
-        rec_url = 'http://exp-api:8000/getSingleCommodity/' + rec_pk + '/'
-        rec_req = requests.get(url, params={'auth': ''})
-        rec_resp_json = rec_req.text
-        rec_resp = json.loads(rec_resp_json)
-        rec_resp_lst[i] = rec_resp
-        i+=1
 
-    context_2 = {
-        'pk' : pk,
-        'item': resp[0],
-        'auth' : auth,
-        'recs' : rec_resp_lst,
-    }
 
     return render(request, 'item.html', context)
 
